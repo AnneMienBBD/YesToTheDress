@@ -1,0 +1,33 @@
+@import "main.css";
+
+.dress-item{
+    max-height: 80vh;
+    width: 80vw;
+    object-fit: contain;
+    position: absolute;
+    top: 2rem;
+    left: 10vw;
+}
+
+.arrow{
+    cursor: pointer;
+    max-height: 40vh;
+    width: 10vw;
+    object-fit: contain;
+    position: absolute;
+}
+.arrow.top{
+    top: 25vh;
+}
+.arrow.skirt{
+    top: 50vh;
+}
+.arrow.left{
+    left: 25vw;
+}
+.arrow.right{
+    left: 65vw;
+}
+.arrow:hover{
+    filter: drop-shadow(0px 0px 8px var(--dark-secondary-color));
+}

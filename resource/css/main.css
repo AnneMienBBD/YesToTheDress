@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing%20Script');
+@import url('https://fonts.googleapis.com/css?family=M%20PLUS%20Rounded%201c');
+
+:root{
+    --primary-color: #AC9FBB;
+    --dark-primary-color: #1D1E2C;
+    --secondary-color: #DDBDD5;
+    --dark-secondary-color: #59656F;
+    --font-color: #000000;
+    --background-color: #F7EBEC;
+    --main-font:"M PLUS Rounded 1c", Arial, Helvetica, sans-serif;
+    --accent-font: 'Dancing Script', serif;
+    --background-color-transparent: #f7ebec53;
+}
+
+/* [dark-mode="dark"]{
+    --primary-color: #9CBFAA;
+    --dark-primary-color: #557772;
+    --secondary-color: #8C546E;
+    --dark-secondary-color: #700A15;
+    --shadow-color: #B9C7CB;
+    --font-color: #FFFFFF;
+    --background-color: #000000;    
+    --background-color-transparent: rgba(0, 0, 0, 0.75);
+} */
+
+html{
+    height: 100%;
+    width: 100%;
+    font-family: var(--main-font);
+    color: var(--font-color);
+    /* background-color: var(--background-color); */
+    background: linear-gradient(to bottom, var(--background-color), var(--dark-secondary-color));
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+h1{
+    font-family: var(--accent-font);
+}
