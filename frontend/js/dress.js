@@ -65,6 +65,15 @@ arrowSkirtRight.addEventListener("click", () => {
   dressSkirt.src = skirtArray[skirtCounter];
 });
 
+async function goToFavourites() {
+  displayLoadingScreen();
+  // DO LOGOUT STUFF HERE
+  window.location.href = "favourites.html";
+}
+
+const goToFavouritesButton = document.getElementById("go-to-favourites");
+goToFavouritesButton.addEventListener("click", goToFavourites);
+
 async function addToFavourites() {
   const text = favouriteButton.innerText.trim();
   if (text === "♡") {

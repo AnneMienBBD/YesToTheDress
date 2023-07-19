@@ -1,24 +1,36 @@
 @import "main.css";
 
 main {
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
+  justify-content: space-between;
   align-items: center;
 }
 
+
+#add-to-favourites {
+  width: 10rem;
+}
+
 #add-to-favourites,
-#logout-button {
+#logout-button,
+#go-to-favourites {
   max-width: 10rem;
 }
-#add-to-favourites {
+
+#logout-button,
+#go-to-favourites {
+  max-width: 10rem;
   position: absolute;
-  bottom: 8vh;
   right: 0;
 }
 
+#go-to-favourites {
+  font-size: medium;
+  bottom: 8vh;
+}
+
 #logout-button {
-  position: absolute;
   bottom: 0;
-  right: 0;
 }
 
 .dress-item {
@@ -61,4 +73,19 @@ main {
   right: 15%;
   opacity: 0.5;
   pointer-events: none;
+}
+
+@media (max-width: 620px) {
+  #add-to-favourites,
+  #logout-button,
+  #go-to-favourites {
+    position: relative;
+    bottom: 0;
+    margin: 0.5rem;
+  }
+
+  .dress-buttons{
+    display: flex;
+    flex-direction: column;
+  }  
 }
