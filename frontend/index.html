@@ -1,39 +1,26 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
-  <head>
-
-    <title>Home</title>
-
-    <meta charset="utf-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="The home page for 'Redlight Greenlight'; the online version of the original children's game. This page allows users to either navigate to the game or leaderboard page, or logout.">
-
-  </head>
-
-  <body>
-
-    <section id="loadingScreen">
-
-      <img src="./loading-icon-secondary.png" alt="loading icon that contains a traffic light instead of an arrow">
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Say Yes to the Dress</title>
+    <meta name="description" content="The home page for 'Say Yes to the Dress' online wedding dress designer.">
+    <link rel="stylesheet" type="text/css" href="css/dress.css">
+    <link rel="icon" type="image.png" href="images/logo.png" sizes="16x16">
+    <script type="module" src="js/dress.js"></script>
+</head>
+<body>
+    <section class="dress-picker">
+        <img src="images/silhouette.png" class="dress-item" id="dress-silhouette">
+        <img src="images/tops/top_asymmetric.png" class="dress-item" id="dress-top">
+        <img src="images/skirts/skirt_ballgown.png" class="dress-item" id="dress-skirt">
+        <img src="images/arrow_left.png" class="arrow top left" id="arrow-top-left">
+        <img src="images/arrow_right.png" class="arrow top right" id="arrow-top-right">
+        <img src="images/arrow_left.png" class="arrow skirt left" id="arrow-skirt-left">
+        <img src="images/arrow_right.png" class="arrow skirt right" id="arrow-skirt-right">
+        
     </section>
-
-    <main>
-
-      <h1>Red Light Green Light</h1>
-
-      <button id="playButton" class="shimmer">Play</button>
-
-      <button id="leaderboardButton">Leaderboard</button>
-
-      <button id="logoutButton">Logout</button>
-
-    </main>
-
-  </body>
-
+    <h1>Say Yes to the Dress</h1>
+    <p>I am barely a paragraph.</p>
+</body>
 </html>
