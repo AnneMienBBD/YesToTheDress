@@ -1,5 +1,26 @@
 @import "main.css";
 
+main {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#add-to-favourites,
+#logout-button {
+  max-width: 10rem;
+}
+#add-to-favourites {
+  position: absolute;
+  bottom: 8vh;
+  right: 0;
+}
+
+#logout-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 .dress-item {
   max-height: 80vh;
   width: 80vw;
@@ -30,4 +51,14 @@
 }
 .arrow:hover {
   filter: drop-shadow(0px 0px 8px var(--dark-secondary-color));
+}
+
+.heart-button::before {
+  content: "❤";
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  right: 15%;
+  opacity: 0.5;
+  pointer-events: none;
 }

@@ -51,10 +51,13 @@ input {
   border-radius: 0.5rem;
   border: 1px solid var(--shadow-color);
   box-shadow: 0 2px 4px var(--shadow-color-dark-transparent);
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
 }
 
 button{
-  margin-top: 0;
+  margin: 0;
 }
 form p {
   margin: 0;

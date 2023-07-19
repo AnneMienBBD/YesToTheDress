@@ -27,16 +27,19 @@
 
 html {
   height: 100%;
-  width: 100%;
   font-family: var(--main-font);
   color: var(--font-color);
-  /* background-color: var(--background-color); */
+}
+
+body{
   background: linear-gradient(
     to bottom,
     var(--background-color),
     var(--dark-secondary-color)
   );
   margin: 0;
+  height: 100%;
+  width: 100%;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -105,9 +108,9 @@ h1 {
 button {
   width: 100%;
   max-width: 30rem;
-  margin-top: 1rem;
+  margin: 1rem;
   padding: 0.5rem;
-  border: none;
+  /* border: none; */
   background-color: var(--primary-color);
   font-size: 1.5rem;
   border-radius: 0.5rem;
@@ -115,12 +118,10 @@ button {
   box-shadow: 0 2px 4px var(--shadow-color-dark-transparent);
   display: inline-block;
   color: white;
-  background: linear-gradient(
-    45deg,
-    var(--secondary-color),
-    var(--primary-color),
-    var(--secondary-color)
-  );
+  background-color: var(--secondary-color);
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
   text-align: center;
   text-transform: uppercase;
   box-shadow: 0 4px 6px var(--transparent-dark);
