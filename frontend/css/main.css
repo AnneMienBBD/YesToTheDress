@@ -75,7 +75,7 @@ h1 {
   box-shadow: 0 0 40px 10px #000000;
   background: radial-gradient(
     var(--background-color) 0%,
-    var(--background-color-transparent) 20%,
+    var(--background-color-transparent) 40%,
     transparent 80%
   );
 }
