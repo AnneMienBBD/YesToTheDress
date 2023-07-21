@@ -30,42 +30,52 @@ goToDressButton.addEventListener("click", () => {
 });
 
 // GET FAVOURITES SECTION--------------------------------------------------------
-// NOTE: THIS IS THE ARRAY THAT IS EXPECTED FROM THE BACKEND
-const favouriteDresses = [
+// ARRAY EXPECTED FROM BACKEND: 
+const backendFavouriteDresses = [
   [
-    TOP_PATH + TOP_NAMES[0], // INSERT NAME OF TOP + ".png" FROM DB INSTEAD OF "TOP_NAMES[0]"
-    SKIRT_PATH + SKIRT_NAMES[0] // INSERT NAME OF SKIRT  + ".png" FROM DB INSTEAD OF "SKIRT_NAMES[1]"
-    // SLEEVE_PATH + sleeveNameFromDb + ".png",
-    // VEIL_PATH + veilNameFromDb + ".png",
-    // TRAIN_PATH + trainNameFromDb + ".png",
-    // SHOE_PATH + shoeNameFromDb + ".png",
+    TOP_NAMES[0], // topNameFromDb,
+    SKIRT_NAMES[0], // skirtNameFromDb,
+    // sleeveNameFromDb,
+    // veilNameFromDb,
+    // trainNameFromDb,
+    // shoeNameFromDb
   ],
   [
-    TOP_PATH + TOP_NAMES[1], // INSERT NAME OF TOP  + ".png" FROM DB INSTEAD OF "TOP_NAMES[0]"
-    SKIRT_PATH + SKIRT_NAMES[1] // INSERT NAME OF SKIRT  + ".png" FROM DB INSTEAD OF "SKIRT_NAMES[1]"
-    // SLEEVE_PATH + sleeveNameFromDb + ".png",
-    // VEIL_PATH + veilNameFromDb + ".png",
-    // TRAIN_PATH + trainNameFromDb + ".png",
-    // SHOE_PATH + shoeNameFromDb + ".png",
+    TOP_NAMES[1], // topNameFromDb,
+    SKIRT_NAMES[1], // skirtNameFromDb,
+    // sleeveNameFromDb,
+    // veilNameFromDb,
+    // trainNameFromDb,
+    // shoeNameFromDb
   ],
   [
-    TOP_PATH + TOP_NAMES[2], // INSERT NAME OF TOP  + ".png" FROM DB INSTEAD OF "TOP_NAMES[0]"
-    SKIRT_PATH + SKIRT_NAMES[2] // INSERT NAME OF SKIRT  + ".png" FROM DB INSTEAD OF "SKIRT_NAMES[1]"
-    // SLEEVE_PATH + sleeveNameFromDb + ".png",
-    // VEIL_PATH + veilNameFromDb + ".png",
-    // TRAIN_PATH + trainNameFromDb + ".png",
-    // SHOE_PATH + shoeNameFromDb + ".png",
+    TOP_NAMES[2], // topNameFromDb,
+    SKIRT_NAMES[2], // skirtNameFromDb,
+    // sleeveNameFromDb,
+    // veilNameFromDb,
+    // trainNameFromDb,
+    // shoeNameFromDb
   ],
   [
-    TOP_PATH + TOP_NAMES[3], // INSERT NAME OF TOP  + ".png" FROM DB INSTEAD OF "TOP_NAMES[0]"
-    SKIRT_PATH + SKIRT_NAMES[3] // INSERT NAME OF SKIRT  + ".png" FROM DB INSTEAD OF "SKIRT_NAMES[1]"
-    // SLEEVE_PATH + sleeveNameFromDb + ".png",
-    // VEIL_PATH + veilNameFromDb + ".png",
-    // TRAIN_PATH + trainNameFromDb + ".png",
-    // SHOE_PATH + shoeNameFromDb + ".png",
-  ]
+    TOP_NAMES[3], // topNameFromDb,
+    SKIRT_NAMES[3], // skirtNameFromDb,
+    // sleeveNameFromDb,
+    // veilNameFromDb,
+    // trainNameFromDb,
+    // shoeNameFromDb
+  ],
 ]
-
+const favouriteDresses = [];
+for(const dress of backendFavouriteDresses){
+  favouriteDresses.push([
+    TOP_PATH + dress[0] + ".png",
+    SKIRT_PATH + dress[1] + ".png",
+    // SLEEVE_PATH + dress[2] + ".png",
+    // VEIL_PATH + dress[3] + ".png",
+    // TRAIN_PATH + dress[4] + ".png",
+    // SHOE_PATH + dress[5] + ".png",
+  ]);
+}
 
 const favouriteDressObjects = new Array(
   document.getElementById("favourite-dress-0"),
