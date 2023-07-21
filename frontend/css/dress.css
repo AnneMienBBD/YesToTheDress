@@ -1,0 +1,91 @@
+@import "main.css";
+
+main {
+  /* justify-content: flex-start; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+#add-to-favourites {
+  width: 10rem;
+}
+
+#add-to-favourites,
+#logout-button,
+#go-to-favourites {
+  max-width: 10rem;
+}
+
+#logout-button,
+#go-to-favourites {
+  max-width: 10rem;
+  position: absolute;
+  right: 0;
+}
+
+#go-to-favourites {
+  font-size: medium;
+  bottom: 8vh;
+}
+
+#logout-button {
+  bottom: 0;
+}
+
+.dress-item {
+  max-height: 80vh;
+  width: 80vw;
+  object-fit: contain;
+  position: absolute;
+  top: 10vh;
+  left: 10vw;
+}
+
+.arrow {
+  cursor: pointer;
+  max-height: 40vh;
+  width: 10vw;
+  object-fit: contain;
+  position: absolute;
+}
+.arrow.top {
+  top: 25vh;
+}
+.arrow.skirt {
+  top: 50vh;
+}
+.arrow.left {
+  left: 25vw;
+}
+.arrow.right {
+  left: 65vw;
+}
+.arrow:hover {
+  filter: drop-shadow(0px 0px 8px var(--dark-secondary-color));
+}
+
+.heart-button::before {
+  content: "❤";
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  right: 15%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (max-width: 620px) {
+  #add-to-favourites,
+  #logout-button,
+  #go-to-favourites {
+    position: relative;
+    bottom: 0;
+    margin: 0.5rem;
+  }
+
+  .dress-buttons{
+    display: flex;
+    flex-direction: column;
+  }  
+}

@@ -1,0 +1,81 @@
+@import "main.css";
+.login-header {
+  display: flex;
+  flex-direction: row;
+  max-width: 50vw;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.login-header img {
+  width: 30%;
+  max-width: 20rem;
+  object-fit: contain;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form section {
+  width: 100%;
+  max-width: 30rem;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 2%;
+  margin-top: 0.5rem;
+}
+
+label {
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: -50rem;
+}
+
+.hidden-text{
+  color: transparent;
+}
+
+#errorText {
+  font-style: italic;
+  text-align: center;
+}
+
+input {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--shadow-color);
+  box-shadow: 0 2px 4px var(--shadow-color-dark-transparent);
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+}
+
+button{
+  margin: 0;
+}
+form p {
+  margin: 0;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+form p a {
+  color: var(--dark-primary-color);
+  font-weight: bold;
+}
+
+#loadingLabel {
+  font-family: var(--accent-font);
+  font-size: 5rem;
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  padding-top: 40vh;
+}
