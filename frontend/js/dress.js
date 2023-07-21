@@ -1,3 +1,5 @@
+import { TOP_PATHS, SKIRT_PATHS } from './constants.js';
+
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
 function displayLoadingScreen() {
@@ -19,63 +21,38 @@ const dressTop = document.getElementById("dress-top");
 const dressSkirt = document.getElementById("dress-skirt");
 
 let topCounter = 0;
-const topArray = new Array(
-  "asymmetric.png",
-  "scoop.png",
-  "sweetheart.png",
-  "vneck.png"
-);
-const topPathArray = new Array(
-  "./images/tops/" + topArray[0],
-  "./images/tops/" + topArray[1],
-  "./images/tops/" + topArray[2],
-  "./images/tops/" + topArray[3]
-);
-
 let skirtCounter = 0;
-const skirtArray = new Array(
-  "ballgown.png",
-  "aline.png",
-  "mermaid.png",
-  "trumpet.png"
-);
-const skirtPathArray = new Array(
-  "./images/skirts/" + skirtArray[0],
-  "./images/skirts/" + skirtArray[1],
-  "./images/skirts/" + skirtArray[2],
-  "./images/skirts/" + skirtArray[3]
-);
 
 arrowTopLeft.addEventListener("click", () => {
   topCounter++;
-  if (topCounter >= topArray.length) {
+  if (topCounter >= TOP_PATHS.length) {
     topCounter = 0;
   }
-  dressTop.src = topPathArray[topCounter];
+  dressTop.src = TOP_PATHS[topCounter];
 });
 
 arrowTopRight.addEventListener("click", () => {
   topCounter--;
   if (topCounter < 0) {
-    topCounter = topArray.length - 1;
+    topCounter = TOP_PATHS.length - 1;
   }
-  dressTop.src = topPathArray[topCounter];
+  dressTop.src = TOP_PATHS[topCounter];
 });
 
 arrowSkirtLeft.addEventListener("click", () => {
   skirtCounter++;
-  if (skirtCounter >= skirtArray.length) {
+  if (skirtCounter >= SKIRT_PATHS.length) {
     skirtCounter = 0;
   }
-  dressSkirt.src = skirtPathArray[skirtCounter];
+  dressSkirt.src = SKIRT_PATHS[skirtCounter];
 });
 
 arrowSkirtRight.addEventListener("click", () => {
   skirtCounter--;
   if (skirtCounter < 0) {
-    skirtCounter = skirtArray.length - 1;
+    skirtCounter = SKIRT_PATHS.length - 1;
   }
-  dressSkirt.src = skirtPathArray[skirtCounter];
+  dressSkirt.src = SKIRT_PATHS[skirtCounter];
 });
 
 function goToFavourites() {

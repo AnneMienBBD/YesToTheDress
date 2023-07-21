@@ -8,9 +8,9 @@
       name="description"
       content="The favourites page for 'Say Yes to the Dress' online wedding dress designer."
     />
-    <link rel="stylesheet" type="text/css" href="css/dress.css" />
+    <link rel="stylesheet" type="text/css" href="css/favourites.css" />
     <link rel="icon" type="image.png" href="images/logo.png" sizes="16x16" />
-    <!-- <script type="module" src="js/dress.js"></script> -->
+    <script type="module" src="js/favourites.js"></script>
   </head>
   <body>
     <section id="loadingScreen">
@@ -18,9 +18,103 @@
     </section>
     <main>
       <h1 class="dress-heading">Say Yes to the Dress</h1>
+
+      <section class="favourite-dress">
+        <div class="favourite-dress-card" id="favourite-dress-0">
+          <img
+            src="images/silhouette.png"
+            class="dress-item"
+            id="dress-silhouette"
+            alt="Silhouette of a woman"
+          />
+          <img
+            src="images/tops/asymmetric.png"
+            class="dress-item"
+            id="dress-top"
+            alt="Wedding dress top"
+          />
+          <img
+            src="images/skirts/ballgown.png"
+            class="dress-item"
+            id="dress-skirt"
+            alt="Wedding dress skirt"
+          />
+          <button class="heart-button" id="favourites-0">
+            <p class="floaty-heart" id="floaty-heart-0">❤</p>
+          </button>
+        </div>
+        <div class="favourite-dress-card" id="favourite-dress-1">
+          <img
+            src="images/silhouette.png"
+            class="dress-item"
+            id="dress-silhouette"
+            alt="Silhouette of a woman"
+          />
+          <img
+            src="images/tops/asymmetric.png"
+            class="dress-item"
+            id="dress-top"
+            alt="Wedding dress top"
+          />
+          <img
+            src="images/skirts/ballgown.png"
+            class="dress-item"
+            id="dress-skirt"
+            alt="Wedding dress skirt"
+          />
+          <button class="heart-button" id="favourites-1">
+            <p class="floaty-heart" id="floaty-heart-1">❤</p>
+          </button>
+        </div>
+        <div class="favourite-dress-card" id="favourite-dress-2">
+          <img
+            src="images/silhouette.png"
+            class="dress-item"
+            id="dress-silhouette"
+            alt="Silhouette of a woman"
+          />
+          <img
+            src="images/tops/asymmetric.png"
+            class="dress-item"
+            id="dress-top"
+            alt="Wedding dress top"
+          />
+          <img
+            src="images/skirts/ballgown.png"
+            class="dress-item"
+            id="dress-skirt"
+            alt="Wedding dress skirt"
+          />
+          <button class="heart-button" id="favourites-2">
+            <p class="floaty-heart" id="floaty-heart-2">❤</p>
+          </button>
+        </div>
+        <div class="favourite-dress-card" id="favourite-dress-3">
+          <img
+            src="images/silhouette.png"
+            class="dress-item"
+            id="dress-silhouette"
+            alt="Silhouette of a woman"
+          />
+          <img
+            src="images/tops/asymmetric.png"
+            class="dress-item"
+            id="dress-top"
+            alt="Wedding dress top"
+          />
+          <img
+            src="images/skirts/ballgown.png"
+            class="dress-item"
+            id="dress-skirt"
+            alt="Wedding dress skirt"
+          />
+          <button class="heart-button" id="favourites-3">
+            <p class="floaty-heart" id="floaty-heart-3">❤</p>
+          </button>
+        </div>
+      </section>
       <section class="dress-buttons">
-        <button class="heart-button" id="add-to-favourites">♡</button>
-        <button id="go-to-favourites">My Designer</button>
+        <button id="go-to-dress">My Designer</button>
         <button id="logout-button">Logout</button>
       </section>
     </main>

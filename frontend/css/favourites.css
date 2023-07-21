@@ -1,0 +1,99 @@
+@import "main.css";
+
+main {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favourite-dress {
+  display: flex;
+  flex-direction: row;
+}
+
+.favourite-dress-card {
+  width: 23vw;
+}
+
+.dress-item {
+  width: 20vw;
+  position: absolute;
+  top: 20vh;
+}
+
+#logout-button,
+#go-to-dress {
+  max-width: 10rem;
+  position: absolute;
+  right: 0;
+}
+
+#go-to-dress {
+  font-size: medium;
+  bottom: 8vh;
+}
+
+#logout-button {
+  bottom: 0;
+}
+
+.heart-button {
+  width: 10rem;
+  margin-left: 5vw;
+  margin-top: 40vh;
+}
+
+.heart-button::before {
+  content: "❤";
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  right: 15%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.floaty-heart {
+  margin: 0;
+  margin-block: 0;
+  margin-inline: 0;
+}
+.floaty-heart::before {
+  content: "❤";
+  position: absolute;
+  font-size: 2rem;
+  right: 40%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+@keyframes flutterUp {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateY(-20px) rotate(-20deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(20deg);
+  }
+  75% {
+    transform: translateY(-20px) rotate(-20deg);
+  }
+  100% {
+    transform: translateY(-100vh) rotate(0);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  #logout-button,
+  #go-to-dress {
+    position: relative;
+    bottom: 0;
+    margin: 0.5rem;
+  }
+
+  .dress-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}
