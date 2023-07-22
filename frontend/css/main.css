@@ -5,9 +5,9 @@
   --primary-color: #ac9fbb;
   --dark-primary-color: #1d1e2c;
   --secondary-color: #ddbdd5;
-  --dark-secondary-color: #59656f;
+  --dark-secondary-color: #6b596f;
   --font-color: #000000;
-  --background-color: #f7ebec;
+  --background-color: #f7ebf5;
   --main-font: "M PLUS Rounded 1c", Arial, Helvetica, sans-serif;
   --accent-font: "Dancing Script", serif;
   --background-color-transparent: #f7ebec53;
@@ -112,11 +112,9 @@ button {
   height: 3rem;
   margin: 1rem;
   padding: 0.5rem;
-  background-color: var(--primary-color);
   font-size: 1.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  box-shadow: 0 2px 4px var(--shadow-color-dark-transparent);
   display: inline-block;
   color: white;
   background-color: var(--secondary-color);

@@ -1,3 +1,5 @@
+import { TOP_PATHS, SKIRT_PATHS } from './constants.js';
+
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
 function displayLoadingScreen() {
@@ -19,78 +21,79 @@ const dressTop = document.getElementById("dress-top");
 const dressSkirt = document.getElementById("dress-skirt");
 
 let topCounter = 0;
-const topArray = new Array(
-  "./images/tops/top_asymmetric.png",
-  "./images/tops/top_scoop.png",
-  "./images/tops/top_sweetheart.png",
-  "./images/tops/top_vneck.png"
-);
 let skirtCounter = 0;
-const skirtArray = new Array(
-  "./images/skirts/skirt_ballgown.png",
-  "./images/skirts/skirt_line.png",
-  "./images/skirts/skirt_mermaid.png",
-  "./images/skirts/skirt_trumpet.png"
-);
 
 arrowTopLeft.addEventListener("click", () => {
   topCounter++;
-  if (topCounter >= topArray.length) {
+  if (topCounter >= TOP_PATHS.length) {
     topCounter = 0;
   }
-  dressTop.src = topArray[topCounter];
+  dressTop.src = TOP_PATHS[topCounter];
 });
 
 arrowTopRight.addEventListener("click", () => {
   topCounter--;
   if (topCounter < 0) {
-    topCounter = topArray.length - 1;
+    topCounter = TOP_PATHS.length - 1;
   }
-  dressTop.src = topArray[topCounter];
+  dressTop.src = TOP_PATHS[topCounter];
 });
 
 arrowSkirtLeft.addEventListener("click", () => {
   skirtCounter++;
-  if (skirtCounter >= skirtArray.length) {
+  if (skirtCounter >= SKIRT_PATHS.length) {
     skirtCounter = 0;
   }
-  dressSkirt.src = skirtArray[skirtCounter];
+  dressSkirt.src = SKIRT_PATHS[skirtCounter];
 });
 
 arrowSkirtRight.addEventListener("click", () => {
   skirtCounter--;
   if (skirtCounter < 0) {
-    skirtCounter = skirtArray.length - 1;
+    skirtCounter = SKIRT_PATHS.length - 1;
   }
-  dressSkirt.src = skirtArray[skirtCounter];
+  dressSkirt.src = SKIRT_PATHS[skirtCounter];
 });
 
-async function goToFavourites() {
+function goToFavourites() {
   displayLoadingScreen();
-  // DO LOGOUT STUFF HERE
   window.location.href = "favourites.html";
 }
 
 const goToFavouritesButton = document.getElementById("go-to-favourites");
 goToFavouritesButton.addEventListener("click", goToFavourites);
 
+function animateHeart() {
+  floatyHeart.style.animation = 'flutterUp 4s forwards';
+  setTimeout(() => {
+    floatyHeart.style.animation = '';
+  }, 4000);
+}
+
 async function addToFavourites() {
-  const text = favouriteButton.innerText.trim();
+  const text = floatyHeart.innerText.trim();
+
   if (text === "♡") {
-    favouriteButton.innerText = "❤";
+    floatyHeart.innerText = "❤";
     favouriteButton.classList.remove("heart-button");
   } else {
     favouriteButton.classList.add("heart-button");
-    favouriteButton.innerText = "♡";
+    animateHeart();
+    floatyHeart.innerText = "♡";
   }
+  // ----------------------------------------------------------------------------
+  /* ADD ADD-TO-FAVOURITES API CALL HERE */
+  // ----------------------------------------------------------------------------
 }
-
+const floatyHeart = document.getElementById('floaty-heart');
 const favouriteButton = document.getElementById("add-to-favourites");
 favouriteButton.addEventListener("click", addToFavourites);
 
 async function logout() {
   displayLoadingScreen();
-  // DO LOGOUT STUFF HERE
+  // ----------------------------------------------------------------------------
+  /* ADD LOGOUT API CALL HERE */
+  // ----------------------------------------------------------------------------
   window.location.href = "login.html";
 }
 

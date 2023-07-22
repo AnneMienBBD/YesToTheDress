@@ -28,21 +28,25 @@ async function login(event) {
   const username = userName.value;
   const password = userPassword.value;
 
-  // const result = await fetch("/Login", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify({ username, password }),
-  // });
-  // const response = await result.json();
-  // if (response.error) {
-  //   errorText.innerText = response.error;
-  //   hideLoadingScreen();
-  // } else {
-  //   sessionStorage.setItem("accessToken", response.token);
-  //   errorText.innerText = "Successful login";
-    // window.location.href = "/Home";
-  // }
-      window.location.href = "index.html";
+  // ----------------------------------------------------------------------------
+  /* ADD LOGIN API CALL HERE
+  This is a node example:
+  const result = await fetch("/Login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+  const response = await result.json();
+  if (response.error) {
+    errorText.innerText = response.error;
+    hideLoadingScreen();
+  } else {
+    sessionStorage.setItem("accessToken", response.token);
+    errorText.innerText = "Successful login";
+    window.location.href = "/Home";
+  }*/
+  // ----------------------------------------------------------------------------
+  window.location.href = "index.html";
 }
 
 loginForm.addEventListener("submit", login);

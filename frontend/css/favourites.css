@@ -1,29 +1,33 @@
 @import "main.css";
 
 main {
-  /* justify-content: flex-start; */
   justify-content: space-between;
   align-items: center;
 }
 
-#add-to-favourites {
-  width: 10rem;
+.favourite-dress {
+  display: flex;
+  flex-direction: row;
 }
 
-#add-to-favourites,
-#logout-button,
-#go-to-favourites {
-  max-width: 10rem;
+.favourite-dress-card {
+  width: 23vw;
+}
+
+.dress-item {
+  width: 20vw;
+  position: absolute;
+  top: 20vh;
 }
 
 #logout-button,
-#go-to-favourites {
+#go-to-dress {
   max-width: 10rem;
   position: absolute;
   right: 0;
 }
 
-#go-to-favourites {
+#go-to-dress {
   font-size: medium;
   bottom: 8vh;
 }
@@ -32,36 +36,10 @@ main {
   bottom: 0;
 }
 
-.dress-item {
-  max-height: 80vh;
-  width: 80vw;
-  object-fit: contain;
-  position: absolute;
-  top: 10vh;
-  left: 10vw;
-}
-
-.arrow {
-  cursor: pointer;
-  max-height: 40vh;
-  width: 10vw;
-  object-fit: contain;
-  position: absolute;
-}
-.arrow.top {
-  top: 25vh;
-}
-.arrow.skirt {
-  top: 50vh;
-}
-.arrow.left {
-  left: 25vw;
-}
-.arrow.right {
-  left: 65vw;
-}
-.arrow:hover {
-  filter: drop-shadow(0px 0px 8px var(--dark-secondary-color));
+.heart-button {
+  width: 10rem;
+  margin-left: 5vw;
+  margin-top: 40vh;
 }
 
 .heart-button::before {
@@ -74,12 +52,12 @@ main {
   pointer-events: none;
 }
 
-#floaty-heart {
+.floaty-heart {
   margin: 0;
   margin-block: 0;
   margin-inline: 0;
 }
-#floaty-heart::before {
+.floaty-heart::before {
   content: "❤";
   position: absolute;
   font-size: 2rem;
@@ -107,9 +85,8 @@ main {
 }
 
 @media (max-width: 620px) {
-  #add-to-favourites,
   #logout-button,
-  #go-to-favourites {
+  #go-to-dress {
     position: relative;
     bottom: 0;
     margin: 0.5rem;
