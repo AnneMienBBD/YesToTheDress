@@ -9,4 +9,8 @@ public class HomeController {
         return "index";
     }
     
+    @RequestMapping("/Favourites")
+    public String viewFavourites(){
+        return "favourites";
+    }
 }
