@@ -25,6 +25,7 @@ CREATE TABLE [Dress] (
   [veilID] [int],
   [shoesID] [int],
   [sleeveID] [int],
+  [trainID] [int],
   CONSTRAINT [PK_Dress] PRIMARY KEY CLUSTERED 
 	(
 		[dressID] ASC
@@ -82,6 +83,16 @@ CREATE TABLE [Sleeves] (
 )
 GO
 
+CREATE TABLE [Train] (
+  [trainID] [int] IDENTITY(1,1) NOT NULL,
+  [trainName] [varchar](255) NOT NULL,
+   CONSTRAINT [PK_Train] PRIMARY KEY CLUSTERED 
+	(
+		[trainID] ASC
+	)
+)
+GO
+
 ALTER TABLE [Dress] ADD FOREIGN KEY ([userID]) REFERENCES [User] ([userID])
 GO
 
@@ -98,6 +109,9 @@ ALTER TABLE [Dress] ADD FOREIGN KEY ([shoesID]) REFERENCES [Shoes] ([shoeID])
 GO
 
 ALTER TABLE [Dress] ADD FOREIGN KEY ([sleeveID]) REFERENCES [Sleeves] ([sleeveID])
+GO
+
+ALTER TABLE [Dress] ADD FOREIGN KEY ([trainID]) REFERENCES [Train] ([trainID])
 GO
 
 --- ****************************************************************  DRESS ITEMS DATA  **********************************************************************
@@ -134,6 +148,13 @@ INSERT INTO [Sleeves]
 VALUES	('offSholder')
 GO
 
+INSERT INTO [Train]
+           ([trainName])
+VALUES	('sweep'),
+		    ('court'),
+        ('chapel')
+GO
+
 --- ****************************************************************  INSERT DUMMY USER **********************************************************************
 INSERT INTO [User]
            ([username])
@@ -152,11 +173,13 @@ GO
 MERGE INTO [Dress] AS target
 USING (
     SELECT
-        (SELECT userID FROM [User] WHERE username = 'dummy user') AS userID,
+        (SELECT userID FROM [User] WHERE username = 'test user') AS userID,
         (SELECT topID FROM [Tops] WHERE topName = 'sweetheart') AS topID,
-        (SELECT skirtID FROM skirts WHERE skirtName = 'mermaid') AS skirtID
+        (SELECT skirtID FROM [Skirts] WHERE skirtName = 'mermaid') AS skirtID,
+		    (SELECT trainID FROM [Train] WHERE trainName = 'court') AS trainID
 ) AS source
 ON 1=0
 WHEN NOT MATCHED THEN
-    INSERT (userID, topID, skirtID)
-    VALUES (source.userID, source.topID, source.skirtID);
+    INSERT (userID, topID, skirtID, trainID)
+    VALUES (source.userID, source.topID, source.skirtID, source.trainID);
+GO
