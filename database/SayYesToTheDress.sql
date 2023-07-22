@@ -36,6 +36,7 @@ GO
 CREATE TABLE [Skirts] (
   [skirtID] [int] IDENTITY(1,1) NOT NULL,
   [skirtName] [varchar](255) NOT NULL,
+  [colour] [varchar](255),
    CONSTRAINT [PK_Skirt] PRIMARY KEY CLUSTERED 
 	(
 		[skirtID] ASC
@@ -46,6 +47,7 @@ GO
 CREATE TABLE [Tops] (
   [topID] [int] IDENTITY(1,1) NOT NULL,
   [topName] [varchar](255) NOT NULL,
+  [colour] [varchar](255),
    CONSTRAINT [PK_Top] PRIMARY KEY CLUSTERED 
 	(
 		[topID] ASC
@@ -56,6 +58,7 @@ GO
 CREATE TABLE [Veils] (
   [veilID] [int] IDENTITY(1,1) NOT NULL,
   [veilName] [varchar](255) NOT NULL,
+  [colour] [varchar](255),
    CONSTRAINT [PK_Veil] PRIMARY KEY CLUSTERED 
 	(
 		[veilID] ASC
@@ -66,6 +69,7 @@ GO
 CREATE TABLE [Shoes] (
   [shoeID] [int] IDENTITY(1,1) NOT NULL,
   [shoeName] [varchar](255) NOT NULL,
+  [colour] [varchar](255),
    CONSTRAINT [PK_Shoes] PRIMARY KEY CLUSTERED 
 	(
 		[shoeID] ASC
@@ -76,6 +80,7 @@ GO
 CREATE TABLE [Sleeves] (
   [sleeveID] [int] IDENTITY(1,1) NOT NULL,
   [sleeveName] [varchar](255) NOT NULL,
+  [colour] [varchar](255),
    CONSTRAINT [PK_Sleeves] PRIMARY KEY CLUSTERED 
 	(
 		[sleeveID] ASC
@@ -86,6 +91,7 @@ GO
 CREATE TABLE [Train] (
   [trainID] [int] IDENTITY(1,1) NOT NULL,
   [trainName] [varchar](255) NOT NULL,
+  [colour] [varchar](255),
    CONSTRAINT [PK_Train] PRIMARY KEY CLUSTERED 
 	(
 		[trainID] ASC
