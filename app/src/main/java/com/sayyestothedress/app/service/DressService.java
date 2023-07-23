@@ -3,7 +3,7 @@ package com.sayyestothedress.app.service;
 /**
  * DressService
  */
-import com.sayyestothedress.app.entity.DressEntity;
+import com.sayyestothedress.app.entity.Dress;
 import com.sayyestothedress.app.repository.DressRepository;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class DressService {
      @Autowired
     private DressRepository dressRepository;
 
-    public List<DressEntity> fetchDressList()
+    public List<Dress> fetchDressList()
     {
         return dressRepository.findAll();
     }

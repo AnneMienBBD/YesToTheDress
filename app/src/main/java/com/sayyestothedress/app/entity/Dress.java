@@ -17,7 +17,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DressEntity {
+public class Dress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +28,7 @@ public class DressEntity {
     private Integer topID;
     private Integer veilID;
     private Integer shoesID;
-    private Integer sleevesID;
+    private Integer sleeveID;
     private Integer trainID;
     
 }

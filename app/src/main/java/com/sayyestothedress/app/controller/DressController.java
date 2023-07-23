@@ -1,6 +1,6 @@
 package com.sayyestothedress.app.controller;
 
-import com.sayyestothedress.app.entity.DressEntity;
+import com.sayyestothedress.app.entity.Dress;
 import com.sayyestothedress.app.service.DressService;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class DressController {
     @Autowired private DressService dressService;
 
     @GetMapping("/dress")
-    public List<DressEntity> fetchDressList()
+    public List<Dress> fetchDressList()
     {
         return dressService.fetchDressList();
     }
