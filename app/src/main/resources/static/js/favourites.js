@@ -31,40 +31,26 @@ goToDressButton.addEventListener("click", () => {
 
 // GET FAVOURITES SECTION--------------------------------------------------------
 // ARRAY EXPECTED FROM BACKEND: 
+// Dress class to represent a single dress
+class Dress {
+  constructor(skirt, top, sleeve, veil, train, shoe) {
+    this.skirt = skirt;
+    this.top = top;
+    this.sleeve = sleeve;
+    this.veil = veil;
+    this.train = train;
+    this.shoe = shoe;
+  }
+}
+
+const exampleDress1 = new Dress(TOP_NAMES[0], SKIRT_NAMES[0]);
+const exampleDress2 = new Dress(TOP_NAMES[1], SKIRT_NAMES[1]);
+const exampleDress3 = new Dress(TOP_NAMES[2], SKIRT_NAMES[2]);
+
 const backendFavouriteDresses = [
-  [
-    TOP_NAMES[0], // topNameFromDb,
-    SKIRT_NAMES[0], // skirtNameFromDb,
-    // sleeveNameFromDb,
-    // veilNameFromDb,
-    // trainNameFromDb,
-    // shoeNameFromDb
-  ],
-  [
-    TOP_NAMES[1], // topNameFromDb,
-    SKIRT_NAMES[1], // skirtNameFromDb,
-    // sleeveNameFromDb,
-    // veilNameFromDb,
-    // trainNameFromDb,
-    // shoeNameFromDb
-  ],
-  [
-    TOP_NAMES[2], // topNameFromDb,
-    SKIRT_NAMES[2], // skirtNameFromDb,
-    // sleeveNameFromDb,
-    // veilNameFromDb,
-    // trainNameFromDb,
-    // shoeNameFromDb
-  ],
-  [
-    TOP_NAMES[3], // topNameFromDb,
-    SKIRT_NAMES[3], // skirtNameFromDb,
-    // sleeveNameFromDb,
-    // veilNameFromDb,
-    // trainNameFromDb,
-    // shoeNameFromDb
-  ],
+  exampleDress1, exampleDress2, exampleDress3
 ]
+
 const favouriteDresses = [];
 for(const dress of backendFavouriteDresses){
   favouriteDresses.push([
