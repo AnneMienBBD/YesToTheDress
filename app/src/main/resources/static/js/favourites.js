@@ -26,7 +26,7 @@ logoutButton.addEventListener("click", logout);
 const goToDressButton = document.getElementById("go-to-dress");
 goToDressButton.addEventListener("click", () => {
   displayLoadingScreen();
-  window.location.href = "index.html";
+  window.location.href = "/";
 });
 
 // GET FAVOURITES SECTION--------------------------------------------------------
