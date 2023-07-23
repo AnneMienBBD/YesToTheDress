@@ -1,14 +1,21 @@
 {
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Spring Boot-AppApplication<app>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.sayyestothedress.app.AppApplication",
-            "projectName": "app",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        }
-    ]
+  "configurations": [
+    {
+      "type": "java",
+      "name": "AppApplication",
+      "request": "launch",
+      "mainClass": "com.sayyestothedress.app.AppApplication",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-AppApplication<app>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.sayyestothedress.app.AppApplication",
+      "projectName": "app",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
 }
