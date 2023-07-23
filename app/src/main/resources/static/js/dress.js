@@ -57,7 +57,7 @@ arrowSkirtRight.addEventListener("click", () => {
 
 function goToFavourites() {
   displayLoadingScreen();
-  window.location.href = "favourites.html";
+  window.location.href = "favourites";
 }
 
 const goToFavouritesButton = document.getElementById("go-to-favourites");
