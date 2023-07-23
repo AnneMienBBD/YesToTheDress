@@ -52,7 +52,9 @@ hideLoadingScreen();
 // loginForm.addEventListener("submit", login);
 
 const cognitoButton = document.getElementById("cognito-button");
+const cognitoURL = "@{/oauth2/authorization/cognito}"
 cognitoButton.addEventListener("click", () => {
   console.log("COGNITO BUTTON CLICKED");
   // add cognito link here
+  window.location.href = cognitoURL;
 });
