@@ -21,5 +21,11 @@ public class DressService {
     {
         return dressRepository.findAll();
     }
+
+    public Dress fetchByDressById(int id) { return dressRepository.findByDressID(id); }
+
+    public List<Dress> fetchDressesByUserID(int userID) {
+        return dressRepository.findByUserID(userID);
+    }
     
 }
