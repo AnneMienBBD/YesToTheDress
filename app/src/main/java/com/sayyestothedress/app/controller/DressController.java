@@ -6,7 +6,9 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,6 +20,21 @@ public class DressController {
     public List<Dress> fetchDressList()
     {
         return dressService.fetchDressList();
+    }
+
+    @GetMapping("/dress/{id}")
+    public ResponseEntity<Dress> fetchDressById(@PathVariable int id) {
+        Dress dress = dressService.fetchByDressById(id);
+        if (dress != null) {
+            return ResponseEntity.ok(dress);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/dress/byUser/{userID}")
+    public List<Dress> fetchDressesByUserID(@PathVariable int userID) {
+        return dressService.fetchDressesByUserID(userID);
     }
     
 }
