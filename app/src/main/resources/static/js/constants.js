@@ -69,3 +69,12 @@ export const VEIL_PATHS = new Array(
   "./images/veils/" + VEIL_NAMES[0] + ".png",
   "./images/veils/" + VEIL_NAMES[1] + ".png"
 );
+
+export const DRESS_ITEM = {
+  TOP: 'TOP',
+  SKIRT: 'SKIRT',
+  SLEEVES: 'SLEEVES',
+  TRAIN: 'TRAIN',
+  SHOES: 'SHOES',
+  VEIL: 'VEIL'
+};

@@ -20,6 +20,7 @@ nextShoe.addEventListener("click", () => {
     shoeCounter = 0;
   }
   dressShoe.src = SHOE_PATHS[shoeCounter];
+  clearFavouriteButtonText();
 });
 
 let veilCounter = 0;
@@ -31,6 +32,7 @@ nextVeil.addEventListener("click", () => {
     veilCounter = 0;
   }
   dressVeil.src = VEIL_PATHS[veilCounter];
+  clearFavouriteButtonText();
 });
 
 let sleeveCounter = 0;
@@ -42,6 +44,7 @@ nextSleeves.addEventListener("click", () => {
     sleeveCounter = 0;
   }
   dressSleeves.src = SLEEVE_PATHS[sleeveCounter];
+  clearFavouriteButtonText();
 });
 
 let topCounter = 0;
@@ -53,6 +56,7 @@ nextTop.addEventListener("click", () => {
     topCounter = 0;
   }
   dressTop.src = TOP_PATHS[topCounter];
+  clearFavouriteButtonText();
 });
 
 let skirtCounter = 0;
@@ -64,6 +68,7 @@ nextSkirt.addEventListener("click", () => {
     skirtCounter = 0;
   }
   dressSkirt.src = SKIRT_PATHS[skirtCounter];
+  clearFavouriteButtonText();
 });
 
 let trainCounter = 0;
@@ -75,6 +80,7 @@ nextTrain.addEventListener("click", () => {
     trainCounter = 0;
   }
   dressTrain.src = TRAIN_PATHS[trainCounter];
+  clearFavouriteButtonText();
 });
 
 function goToFavourites() {
@@ -92,9 +98,12 @@ function animateHeart() {
   }, 4000);
 }
 
-async function addToFavourites() {
-  const text = floatyHeart.innerText.trim();
+function clearFavouriteButtonText(){
+  floatyHeart.innerText = "♡";
+}
 
+function updateFavouritesButtonText(){
+  const text = floatyHeart.innerText.trim();
   if (text === "♡") {
     floatyHeart.innerText = "❤";
     favouriteButton.classList.remove("heart-button");
@@ -103,6 +112,10 @@ async function addToFavourites() {
     animateHeart();
     floatyHeart.innerText = "♡";
   }
+}
+
+async function addToFavourites() {
+  updateFavouritesButtonText();
   // ----------------------------------------------------------------------------
   /* ADD ADD-TO-FAVOURITES API CALL HERE */
   // ----------------------------------------------------------------------------
