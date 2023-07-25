@@ -25,3 +25,5 @@ replay_pid*
 
 # intelij files
 .idea
+
+app/src/main/resources/*.properties
