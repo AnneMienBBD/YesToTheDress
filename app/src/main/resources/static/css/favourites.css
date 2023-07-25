@@ -5,21 +5,6 @@ main {
   align-items: center;
 }
 
-.favourite-dress {
-  display: flex;
-  flex-direction: row;
-}
-
-.favourite-dress-card {
-  width: 23vw;
-}
-
-.dress-item {
-  width: 20vw;
-  position: absolute;
-  top: 20vh;
-}
-
 #logout-button,
 #go-to-dress {
   max-width: 10rem;
