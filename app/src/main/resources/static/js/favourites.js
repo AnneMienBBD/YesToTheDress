@@ -104,7 +104,7 @@ let numDresses = 0;
 
 const backendFavouriteDresses = [];
 async function getFavourites() {
-  const response = await fetch("/dress/byUser/{userID}");
+  const response = await fetch("/getFavourites"); // INSERT THE API CALL HERE
   const favouritesData = await response.json();
   for (const element of favouritesData) {
     backendFavouriteDresses.add(
