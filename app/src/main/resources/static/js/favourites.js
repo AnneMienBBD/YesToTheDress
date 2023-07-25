@@ -1,4 +1,4 @@
-import { TOP_PATH, TOP_NAMES, SKIRT_PATH, SKIRT_NAMES } from './constants.js';
+import { TOP_PATH, SKIRT_PATH, SLEEVE_PATH, TRAIN_PATH, SHOE_PATH, VEIL_PATH  } from './constants.js';
 
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
@@ -29,74 +29,41 @@ goToDressButton.addEventListener("click", () => {
   window.location.href = "/";
 });
 
-function removeFromFavourites(dressCounter){
-  // ADD CALL TO REMOVE FROM DB HERE
-  // And then visually remove: 
+function removeFromFavourites(dressCounter) {
+  displayLoadingScreen();
+  // ----------------------------------------------------------------------------
+  /* ADD REMOVE FROM FAVOURITES API CALL HERE */
+  // ----------------------------------------------------------------------------
+  // And then visually remove:
   favouriteDresses.splice(dressCounter, 1);
   numDresses--;
   initializeCarousel();
 }
 
-// GET FAVOURITES SECTION--------------------------------------------------------
-class Dress {
-  constructor(top, skirt, sleeve, veil, train, shoe) {
-    this.top = top;
-    this.skirt = skirt;
-    this.sleeve = sleeve;
-    this.veil = veil;
-    this.train = train;
-    this.shoe = shoe;
-  }
-}
-
-const exampleDress1 = new Dress("asymmetric", "aline");
-const exampleDress2 = new Dress("scoop", "ballgown");
-const exampleDress3 = new Dress("sweetheart", "mermaid");
-const exampleDress4 = new Dress("asymmetric", "mermaid");
-
-// This is what we expect from backend-------------------------------------------
-const backendFavouriteDresses = [
-  exampleDress1, exampleDress2, exampleDress3, exampleDress4, exampleDress4, exampleDress4, exampleDress4, exampleDress4
-]
-
-const favouriteDresses = [];
-let numDresses = 0;
-for(const dress of backendFavouriteDresses){
-  numDresses++;
-  favouriteDresses.push({
-    top: TOP_PATH + dress.top + ".png",
-    skirt: SKIRT_PATH + dress.skirt + ".png",
-    // SLEEVE_PATH + dress[2] + ".png",
-    // VEIL_PATH + dress[3] + ".png",
-    // TRAIN_PATH + dress[4] + ".png",
-    // SHOE_PATH + dress[5] + ".png",
-  });
-}
-
 function createDressImage(dress, dressCounter) {
-  const dressImage = document.createElement('div');
-  dressImage.classList.add('dress-image');
+  const dressImage = document.createElement("div");
+  dressImage.classList.add("dress-image");
 
-  const skirtImage = document.createElement('img');
+  const skirtImage = document.createElement("img");
   skirtImage.src = dress.skirt;
   skirtImage.style.position = "absolute";
   skirtImage.style.top = "10vh";
-  skirtImage.style.left = (dressCounter*(90/numDresses)+5) + "vw";
-  skirtImage.style.width = 90/numDresses + "vw";
+  skirtImage.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
+  skirtImage.style.width = 90 / numDresses + "vw";
   dressImage.appendChild(skirtImage);
 
-  const topImage = document.createElement('img');
+  const topImage = document.createElement("img");
   topImage.src = dress.top;
   topImage.style.position = "absolute";
   topImage.style.top = "10vh";
-  topImage.style.left = (dressCounter*(90/numDresses)+5) + "vw";
-  topImage.style.width = 90/numDresses + "vw";
+  topImage.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
+  topImage.style.width = 90 / numDresses + "vw";
   dressImage.appendChild(topImage);
 
-  const removeButton = document.createElement('button');
+  const removeButton = document.createElement("button");
   removeButton.style.position = "absolute";
   removeButton.style.top = "30vh";
-  removeButton.style.left = (dressCounter*(90/numDresses)+5) + "vw";
+  removeButton.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
   removeButton.style.width = "fit-content";
   removeButton.innerText = "Remove ❤";
   removeButton.style.padding = "0 2% 0 2%";
@@ -110,8 +77,8 @@ function createDressImage(dress, dressCounter) {
   return dressImage;
 }
 
-function initializeCarousel() {
-  const carouselContainer = document.querySelector('.carousel');
+function initializeCarousel(favouriteDresses) {
+  const carouselContainer = document.querySelector(".carousel");
   carouselContainer.innerHTML = "";
   let dressCounter = 0;
   favouriteDresses.forEach((dress) => {
@@ -122,79 +89,52 @@ function initializeCarousel() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', initializeCarousel);
+class Dress {
+  constructor(top, skirt, sleeve, veil, train, shoe) {
+    this.top = top;
+    this.skirt = skirt;
+    this.sleeve = sleeve;
+    this.veil = veil;
+    this.train = train;
+    this.shoe = shoe;
+  }
+}
 
+let numDresses = 0;
 
+const backendFavouriteDresses = [];
+async function getFavourites() {
+  const response = await fetch("/dress/byUser/{userID}");
+  const favouritesData = await response.json();
+  for (const element of favouritesData) {
+    backendFavouriteDresses.add(
+      new Dress(
+        element.top,
+        element.skirt,
+        element.sleeve,
+        element.veil,
+        element.train,
+        element.shoe
+      )
+    );
+  }
 
+  const favouriteDresses = [];
+  numDresses = 0;
+  for (const dress of backendFavouriteDresses) {
+    numDresses++;
+    favouriteDresses.push({
+      top: TOP_PATH + dress.top + ".png",
+      skirt: SKIRT_PATH + dress.skirt + ".png",
+      sleeve: SLEEVE_PATH + dress.sleeve + ".png",
+      veil: VEIL_PATH + dress.veil + ".png",
+      train: TRAIN_PATH + dress.train + ".png",
+      shoe: SHOE_PATH + dress.shoe + ".png",
+    });
+  }
 
+  initializeCarousel(favouriteDresses);
+  hideLoadingScreen();
+}
 
-
-
-
-// // This needs to be improved further: 
-// // ADD TO FAVOURITES ------------------------------------------------------------
-// async function addToFavourites(index, floatyHeart, favouriteButton) {
-//   const text = floatyHeart.innerText.trim();
-
-//   if (text === "♡") {
-//     floatyHeart.innerText = "❤";
-//     favouriteButton.classList.remove("heart-button");
-//   } else {
-//     favouriteButton.classList.add("heart-button");
-//     floatyHeart.style.animation = "flutterUp 4s forwards";
-//     setTimeout(() => {
-//       floatyHeart.style.animation = "";
-//     }, 4000);
-//     floatyHeart.innerText = "♡";
-//   }
-//   // ----------------------------------------------------------------------------
-//   /* ADD ADD-TO-FAVOURITES API CALL HERE */
-//   // ----------------------------------------------------------------------------
-// }
-// const floatyHeart0 = document.getElementById("floaty-heart-0");
-// const favouriteButton0 = document.getElementById("favourites-0");
-// favouriteButton0.addEventListener(
-//   "click",
-//   addToFavourites(0, floatyHeart0, favouriteButton0)
-// );
-
-// const floatyHeart1 = document.getElementById("floaty-heart-1");
-// const favouriteButton1 = document.getElementById("favourites-1");
-// favouriteButton1.addEventListener(
-//   "click",
-//   addToFavourites(1, floatyHeart1, favouriteButton1)
-// );
-
-// const floatyHeart2 = document.getElementById("floaty-heart-2");
-// const favouriteButton2 = document.getElementById("favourites-2");
-// favouriteButton2.addEventListener(
-//   "click",
-//   addToFavourites(2, floatyHeart2, favouriteButton2)
-// );
-
-// const floatyHeart3 = document.getElementById("floaty-heart-3");
-// const favouriteButton3 = document.getElementById("favourites-3");
-// favouriteButton3.addEventListener(
-//   "click",
-//   addToFavourites(3, floatyHeart3, favouriteButton3)
-// );
-
-// // trying to hide loading screen AFTER all images load - not really working though lmao
-// let imagesLoaded = 0;
-// let observer = new IntersectionObserver(function (entries) {
-//   entries.forEach(function (entry) {
-//     if (entry.isIntersecting) {
-//       imagesLoaded++;
-//       observer.unobserve(entry.target);
-//     }
-//   });
-
-//   if (imagesLoaded == images.length) {
-//     hideLoadingScreen();
-//   }
-// });
-
-// let images = document.querySelectorAll("img");
-// images.forEach(function (image) {
-//   observer.observe(image);
-// });
+window.addEventListener("load", getFavourites());

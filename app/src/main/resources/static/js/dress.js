@@ -1,5 +1,4 @@
 import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS  } from './constants.js';
-
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
 function displayLoadingScreen() {
@@ -22,13 +21,6 @@ nextShoe.addEventListener("click", () => {
   }
   dressShoe.src = SHOE_PATHS[shoeCounter];
 });
-// arrowTopRight.addEventListener("click", () => {
-//   topCounter--;
-//   if (topCounter < 0) {
-//     topCounter = TOP_PATHS.length - 1;
-//   }
-//   dressTop.src = TOP_PATHS[topCounter];
-// });
 
 let veilCounter = 0;
 const dressVeil = document.getElementById("dress-veil");
