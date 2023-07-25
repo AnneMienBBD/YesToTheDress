@@ -19,10 +19,5 @@ public class FavouritesController {
     public String viewFavourites(){
         return "favourites";
     }
-
-    @GetMapping("/favourites/{userID}")
-    public List<Dress> fetchDressesByUserID(@PathVariable int userID) {
-        return dressService.fetchDressesByUserID(userID);
-    }
   
 }

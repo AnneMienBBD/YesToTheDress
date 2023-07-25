@@ -36,5 +36,11 @@ public class DressController {
     public List<Dress> fetchDressesByUserID(@PathVariable int userID) {
         return dressService.fetchDressesByUserID(userID);
     }
+
+    @GetMapping("/getFavourites")
+    public List<Dress> fetchDressesByUserID() {
+        int userID = 2; //To cater for userid from auth later
+        return dressService.fetchDressesByUserID(userID);
+    }
     
 }
