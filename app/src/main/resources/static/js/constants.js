@@ -28,10 +28,10 @@ export const SKIRT_PATHS = new Array(
 
 export const SLEEVE_PATH = "./images/sleeves/";
 export const SLEEVE_NAMES = new Array(
-  "full",
   "highNeck",
-  "offShoulder",
-  "none"
+  "long",
+  "none",
+  "offShoulder"
 );
 export const SLEEVE_PATHS = new Array(
   "./images/sleeves/" + SLEEVE_NAMES[0] + ".png",
@@ -42,42 +42,30 @@ export const SLEEVE_PATHS = new Array(
 
 export const TRAIN_PATH = "./images/trains/";
 export const TRAIN_NAMES = new Array(
-  "long",
-  "medium",
-  "short",
-  "none"
+  "none",
+  "train",
 );
 export const TRAIN_PATHS = new Array(
   "./images/trains/" + TRAIN_NAMES[0] + ".png",
-  "./images/trains/" + TRAIN_NAMES[1] + ".png",
-  "./images/trains/" + TRAIN_NAMES[2] + ".png",
-  "./images/trains/" + TRAIN_NAMES[3] + ".png"
+  "./images/trains/" + TRAIN_NAMES[1] + ".png"
 );
 
 export const SHOE_PATH = "./images/shoes/";
 export const SHOE_NAMES = new Array(
-  "boot",
-  "wedge",
-  "stiletto",
-  "strappy"
+  "black",
+  "white"
 );
 export const SHOE_PATHS = new Array(
   "./images/shoes/" + SHOE_NAMES[0] + ".png",
-  "./images/shoes/" + SHOE_NAMES[1] + ".png",
-  "./images/shoes/" + SHOE_NAMES[2] + ".png",
-  "./images/shoes/" + SHOE_NAMES[3] + ".png"
+  "./images/shoes/" + SHOE_NAMES[1] + ".png"
 );
 
-export const VEIL_PATH = "./images/shoes/";
+export const VEIL_PATH = "./images/veils/";
 export const VEIL_NAMES = new Array(
-  "long",
-  "medium",
-  "short",
-  "none"
+  "none",
+  "short"
 );
 export const VEIL_PATHS = new Array(
   "./images/veils/" + VEIL_NAMES[0] + ".png",
-  "./images/veils/" + VEIL_NAMES[1] + ".png",
-  "./images/veils/" + VEIL_NAMES[2] + ".png",
-  "./images/veils/" + VEIL_NAMES[3] + ".png"
+  "./images/veils/" + VEIL_NAMES[1] + ".png"
 );

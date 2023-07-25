@@ -1,4 +1,4 @@
-import { TOP_PATHS, SKIRT_PATHS } from './constants.js';
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS  } from './constants.js';
 
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
@@ -12,18 +12,50 @@ function hideLoadingScreen() {
 
 displayLoadingScreen();
 
-const arrowTopLeft = document.getElementById("arrow-top-left");
-const arrowTopRight = document.getElementById("arrow-top-right");
-const arrowSkirtLeft = document.getElementById("arrow-skirt-left");
-const arrowSkirtRight = document.getElementById("arrow-skirt-right");
+let shoeCounter = 0;
+const dressShoe = document.getElementById("dress-shoe");
+const nextShoe = document.getElementById("shoe-button");
+nextShoe.addEventListener("click", () => {
+  shoeCounter++;
+  if (shoeCounter >= SHOE_PATHS.length) {
+    shoeCounter = 0;
+  }
+  dressShoe.src = SHOE_PATHS[shoeCounter];
+});
+// arrowTopRight.addEventListener("click", () => {
+//   topCounter--;
+//   if (topCounter < 0) {
+//     topCounter = TOP_PATHS.length - 1;
+//   }
+//   dressTop.src = TOP_PATHS[topCounter];
+// });
 
-const dressTop = document.getElementById("dress-top");
-const dressSkirt = document.getElementById("dress-skirt");
+let veilCounter = 0;
+const dressVeil = document.getElementById("dress-veil");
+const nextVeil = document.getElementById("veil-button");
+nextVeil.addEventListener("click", () => {
+  veilCounter++;
+  if (veilCounter >= VEIL_PATHS.length) {
+    veilCounter = 0;
+  }
+  dressVeil.src = VEIL_PATHS[veilCounter];
+});
+
+let sleeveCounter = 0;
+const dressSleeves = document.getElementById("dress-sleeve");
+const nextSleeves = document.getElementById("sleeves-button");
+nextSleeves.addEventListener("click", () => {
+  sleeveCounter++;
+  if (sleeveCounter >= SLEEVE_PATHS.length) {
+    sleeveCounter = 0;
+  }
+  dressSleeves.src = SLEEVE_PATHS[sleeveCounter];
+});
 
 let topCounter = 0;
-let skirtCounter = 0;
-
-arrowTopLeft.addEventListener("click", () => {
+const dressTop = document.getElementById("dress-top");
+const nextTop = document.getElementById("top-button");
+nextTop.addEventListener("click", () => {
   topCounter++;
   if (topCounter >= TOP_PATHS.length) {
     topCounter = 0;
@@ -31,15 +63,10 @@ arrowTopLeft.addEventListener("click", () => {
   dressTop.src = TOP_PATHS[topCounter];
 });
 
-arrowTopRight.addEventListener("click", () => {
-  topCounter--;
-  if (topCounter < 0) {
-    topCounter = TOP_PATHS.length - 1;
-  }
-  dressTop.src = TOP_PATHS[topCounter];
-});
-
-arrowSkirtLeft.addEventListener("click", () => {
+let skirtCounter = 0;
+const dressSkirt = document.getElementById("dress-skirt");
+const nextSkirt = document.getElementById("skirt-button");
+nextSkirt.addEventListener("click", () => {
   skirtCounter++;
   if (skirtCounter >= SKIRT_PATHS.length) {
     skirtCounter = 0;
@@ -47,12 +74,15 @@ arrowSkirtLeft.addEventListener("click", () => {
   dressSkirt.src = SKIRT_PATHS[skirtCounter];
 });
 
-arrowSkirtRight.addEventListener("click", () => {
-  skirtCounter--;
-  if (skirtCounter < 0) {
-    skirtCounter = SKIRT_PATHS.length - 1;
+let trainCounter = 0;
+const dressTrain = document.getElementById("dress-train");
+const nextTrain = document.getElementById("train-button");
+nextTrain.addEventListener("click", () => {
+  trainCounter++;
+  if (trainCounter >= TRAIN_PATHS.length) {
+    trainCounter = 0;
   }
-  dressSkirt.src = SKIRT_PATHS[skirtCounter];
+  dressTrain.src = TRAIN_PATHS[trainCounter];
 });
 
 function goToFavourites() {
