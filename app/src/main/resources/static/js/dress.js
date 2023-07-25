@@ -107,22 +107,30 @@ function updateFavouritesButtonText(){
   if (text === "♡") {
     floatyHeart.innerText = "❤";
     favouriteButton.classList.remove("heart-button");
+    addToFavourites();
   } else {
     favouriteButton.classList.add("heart-button");
     animateHeart();
     floatyHeart.innerText = "♡";
+    removeFromFavourites();
   }
 }
 
 async function addToFavourites() {
-  updateFavouritesButtonText();
   // ----------------------------------------------------------------------------
   /* ADD ADD-TO-FAVOURITES API CALL HERE */
   // ----------------------------------------------------------------------------
 }
+
+async function removeFromFavourites() {
+  // ----------------------------------------------------------------------------
+  /* ADD REMOVE-FROM-FAVOURITES API CALL HERE */
+  // ----------------------------------------------------------------------------
+}
+
 const floatyHeart = document.getElementById('floaty-heart');
 const favouriteButton = document.getElementById("add-to-favourites");
-favouriteButton.addEventListener("click", addToFavourites);
+favouriteButton.addEventListener("click", updateFavouritesButtonText);
 
 async function logout() {
   displayLoadingScreen();
