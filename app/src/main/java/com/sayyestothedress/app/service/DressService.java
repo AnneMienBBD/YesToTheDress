@@ -4,6 +4,7 @@ package com.sayyestothedress.app.service;
  * DressService
  */
 import com.sayyestothedress.app.entity.Dress;
+import com.sayyestothedress.app.model.DressDTO;
 import com.sayyestothedress.app.repository.DressRepository;
 
 import java.util.List;
@@ -26,6 +27,15 @@ public class DressService {
 
     public List<Dress> fetchDressesByUserID(int userID) {
         return dressRepository.findByUserID(userID);
+    }
+
+
+    public Dress addDress(DressDTO dressDTO){
+
+        Dress dress;
+
+
+        return dressRepository.save(dress);
     }
     
 }
