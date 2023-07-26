@@ -52,6 +52,8 @@ public class DressService {
 
          Dress.DressBuilder dress = Dress.builder();
 
+         dress.userID(4);
+
         if (dressDTO.getShoes() != null){
            dress.shoesID(shoesRepository.findFirstByShoeName(dressDTO.getShoes()).getShoesID());
         }

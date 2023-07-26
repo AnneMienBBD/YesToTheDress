@@ -51,4 +51,10 @@ public class DressController {
         }
     }
 
+    @GetMapping("/getFavourites")
+    public List<Dress> fetchDressesByUserID() {
+        int userID = 2; //To cater for userid from auth later
+        return dressService.fetchDressesByUserID(userID);
+    }
+    
 }
