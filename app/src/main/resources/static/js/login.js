@@ -43,7 +43,7 @@ async function login(event) {
   let cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 
   cognitoUser.authenticateUser(authenticationDetails, {
-    onSuccess: function (session) {
+    onSuccess: async function (session) {
       const accessToken = session.getAccessToken().getJwtToken();
       const idToken = session.getIdToken().getJwtToken();
       const refreshToken = session.getRefreshToken().getToken();
@@ -51,7 +51,7 @@ async function login(event) {
       console.log('Authentication successful!', session);
         // Use the access token to make authenticated API requests.
         // For example, using Fetch API:
-        // fetch('/api/some-resource', {
+        // const response = await fetch('/home', {
         //     headers: {
         //           Authorization: 'Bearer ' + accessToken
         //       }
@@ -59,7 +59,7 @@ async function login(event) {
         //   .then(response => response.json())
         //   .then(data => console.log(data))
         //   .catch(error => console.error(error));
-        window.location.href = "/home";
+        // window.location.href = response.url;
       },
       onFailure: function (err) {
           console.error("Authentication failed:", err);
