@@ -102,15 +102,28 @@ async function signup(event) {
 
     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'email', Value: email }));
     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'preferred_username', Value: username }));
-    userPool.signUp(username, password, attributeList, null, function (err, result) {
+    userPool.signUp(username, password, attributeList, null, async function (err, result) {
       if (err) {
           console.error('Error registering user:', err.message || JSON.stringify(err));
           return;
       }else{
 
-          console.log('User registered successfully. Confirmation email sent:', result.user);
-          document.getElementById('signup-container').style.display = 'none';
-          document.getElementById('verification-container').style.display = 'flex';
+          const response = await fetch('/user', {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({username: username})
+          });
+          
+          if (response.status === 201) {
+            document.getElementById('signup-container').style.display = 'none';
+            document.getElementById('verification-container').style.display = 'flex';
+          }
+          // else (
+          //   // ERROR HANDLING
+          // )
+          
       }
       });
 
