@@ -104,6 +104,7 @@ async function signup(event) {
     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'preferred_username', Value: username }));
     userPool.signUp(username, password, attributeList, null, async function (err, result) {
       if (err) {
+          showErrorText(err.message);
           console.error('Error registering user:', err.message || JSON.stringify(err));
           return;
       }else{
@@ -115,19 +116,21 @@ async function signup(event) {
             },
             body: JSON.stringify({username: username})
           });
-          
+          console.log("RESPONSE: ", response);
           if (response.status === 201) {
             document.getElementById('signup-container').style.display = 'none';
             document.getElementById('verification-container').style.display = 'flex';
           }
-          // else (
-          //   // ERROR HANDLING
-          // )
-          
+          else {
+            showErrorText(
+              response.statusText
+            );
+          }          
       }
       });
 
   } catch (err) {
+      showErrorText(err.message);
       console.error('Sign up error', err);
       alert('Sign up error: ' + err.message);
   }
@@ -138,7 +141,7 @@ async function signup(event) {
 async function verifyAccount(event) {
   displayLoadingScreen();
   event.preventDefault();
-
+  showErrorText("Verification error");
   console.error('Verification error');
 
   const username = document.getElementById('username').value;
@@ -153,6 +156,8 @@ async function verifyAccount(event) {
 
     cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
         if (err) {
+            showErrorText(err.message);
+
             console.error('Verification error', err);
             alert('Verification error: ' + err.message);
         } else {
@@ -164,6 +169,7 @@ async function verifyAccount(event) {
         }
     });
   } catch (err) {
+    showErrorText(err.message);
     console.error('Verification error', err);
     alert('Verification error: ' + err.message);
 }
