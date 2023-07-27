@@ -10,6 +10,9 @@
     />
     <link rel="stylesheet" type="text/css" href="css/login.css" />
     <link rel="icon" type="image.png" href="images/logo.png" sizes="16x16" />
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.933.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js@6.3.1/dist/amazon-cognito-identity.min.js"></script>
+    <script type="text/javascript" src="js/userpool.js"></script>
     <script type="module" src="js/login.js"></script>
   </head>
   <body>
@@ -24,9 +27,8 @@
         />
         <h1>Login</h1>
       </aside>
-      <button id="cognito-button" style="width: fit-content; height: fit-content;">Login/Signup with Cognito</button>
 
-      <!-- <form id="loginForm">
+      <form id="loginForm">
         <section>
           <label for="username">Username</label>
           <input
@@ -48,8 +50,8 @@
         <section>
           <label id="errorText" class="hidden-text">blank</label>
           <button type="submit">Login</button>
-          <p>Don't have an account? Sign up <a href="signup.html">here</a>.</p>
-        </section> -->
+          <p>Don't have an account? Sign up <a href="/signup">here</a>.</p>
+        </section>
       </form>
     </main>
   </body>
