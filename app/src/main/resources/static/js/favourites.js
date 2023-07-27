@@ -1,4 +1,4 @@
-import { TOP_PATH, SKIRT_PATH, SLEEVE_PATH, TRAIN_PATH, SHOE_PATH, VEIL_PATH  } from './constants.js';
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS  } from './constants.js';
 
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
@@ -44,21 +44,17 @@ function createDressImage(dress, dressCounter) {
   const dressImage = document.createElement("div");
   dressImage.classList.add("dress-image");
 
-  const skirtImage = document.createElement("img");
-  skirtImage.src = dress.skirt;
-  skirtImage.style.position = "absolute";
-  skirtImage.style.top = "10vh";
-  skirtImage.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
-  skirtImage.style.width = 90 / numDresses + "vw";
-  dressImage.appendChild(skirtImage);
-
-  const topImage = document.createElement("img");
-  topImage.src = dress.top;
-  topImage.style.position = "absolute";
-  topImage.style.top = "10vh";
-  topImage.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
-  topImage.style.width = 90 / numDresses + "vw";
-  dressImage.appendChild(topImage);
+  for (const item in dress) {    
+    if (dress.hasOwnProperty(item)) {
+      const image = document.createElement("img");
+      image.src = dress[item];
+      image.style.position = "absolute";
+      image.style.top = "10vh";
+      image.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
+      image.style.width = 90 / numDresses + "vw";
+      dressImage.appendChild(image);
+    }
+  }
 
   const removeButton = document.createElement("button");
   removeButton.style.position = "absolute";
@@ -82,55 +78,63 @@ function initializeCarousel(favouriteDresses) {
   carouselContainer.innerHTML = "";
   let dressCounter = 0;
   favouriteDresses.forEach((dress) => {
-    console.log(dress.top);
     const dressImage = createDressImage(dress, dressCounter);
     carouselContainer.appendChild(dressImage);
     dressCounter++;
   });
 }
 
-class Dress {
-  constructor(top, skirt, sleeve, veil, train, shoe) {
-    this.top = top;
-    this.skirt = skirt;
-    this.sleeve = sleeve;
-    this.veil = veil;
-    this.train = train;
-    this.shoe = shoe;
+class Dress { // train > veil > silhouette > sleeves > shoes > skirts > tops
+  constructor(trainPath, veilPath, sleevePath, shoePath, skirtPath, topPath) {
+    this.train = trainPath;
+    this.veil = veilPath;
+    this.sleeve = sleevePath;
+    this.shoe = shoePath;
+    this.skirt = skirtPath;
+    this.top = topPath;
   }
 }
 
 let numDresses = 0;
 
-const backendFavouriteDresses = [];
+let favouriteDresses = [];
 async function getFavourites() {
-  const response = await fetch("/getFavourites"); // INSERT THE API CALL HERE
+  favouriteDresses = [];
+  const response = await fetch("/getFavourites");
   const favouritesData = await response.json();
+
+  numDresses = 0;
   for (const element of favouritesData) {
-    backendFavouriteDresses.add(
+
+    if(element.topID == null){
+      element.topID = 1;
+    }
+    if(element.skirtID == null){
+      element.skirtID = 1;
+    }
+    if(element.sleeveID == null){
+      element.sleeveID = 1;
+    }
+    if(element.veilID == null){
+      element.veilID = 1;
+    }
+    if(element.trainID == null){
+      element.trainID = 1;
+    }
+    if(element.shoesID == null){
+      element.shoesID = 1;
+    }
+    numDresses++;
+    favouriteDresses.push(
       new Dress(
-        element.top,
-        element.skirt,
-        element.sleeve,
-        element.veil,
-        element.train,
-        element.shoe
+        TRAIN_PATHS[element.trainID-1],
+        VEIL_PATHS[element.veilID-1],
+        SLEEVE_PATHS[element.sleeveID-1],
+        SHOE_PATHS[element.shoesID-1],
+        SKIRT_PATHS[element.skirtID-1],
+        TOP_PATHS[element.topID-1],
       )
     );
-  }
-
-  const favouriteDresses = [];
-  numDresses = 0;
-  for (const dress of backendFavouriteDresses) {
-    numDresses++;
-    favouriteDresses.push({
-      top: TOP_PATH + dress.top + ".png",
-      skirt: SKIRT_PATH + dress.skirt + ".png",
-      sleeve: SLEEVE_PATH + dress.sleeve + ".png",
-      veil: VEIL_PATH + dress.veil + ".png",
-      train: TRAIN_PATH + dress.train + ".png",
-      shoe: SHOE_PATH + dress.shoe + ".png",
-    });
   }
 
   initializeCarousel(favouriteDresses);
