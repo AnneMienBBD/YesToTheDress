@@ -62,6 +62,17 @@ public class DressController {
         }
     }
 
+    // @DeleteMapping("/dress/{dressId}")
+    // public ResponseEntity<Void> removeDressById(@PathVariable("dressId") int dressId) {
+    //     int userID = 2; // To cater for userid from auth later
+    //     boolean dressRemoved = dressService.removeDressById(dressId, userID);
+    //     if (dressRemoved) {
+    //         return ResponseEntity.noContent().build(); // Dress removed successfully, return 204 No Content
+    //     } else {
+    //         return ResponseEntity.notFound().build(); // Dress with the specified ID not found, return 404 Not Found
+    //     }
+    // }
+
 
     @GetMapping("/getFavourites")
     public List<Dress> fetchDressesByUserID() {
