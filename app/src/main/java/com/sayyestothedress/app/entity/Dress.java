@@ -20,7 +20,7 @@ import javax.persistence.Id;
 public class Dress {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer dressID;
     private Integer userID;

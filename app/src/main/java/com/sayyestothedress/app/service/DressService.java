@@ -48,6 +48,24 @@ public class DressService {
         return dressRepository.findByUserID(userID);
     }
 
+    public Dress addDress(Dress dressDTO, int id){
+        dressDTO.setUserID(id);
+        return dressRepository.save(dressDTO);
+    }
+
+    // // For dressRepository to be available, you should have a repository interface for Dress defined.
+    // public boolean removeDressById(int dressId, int userId) {
+    //     Optional<Dress> optionalDress = dressRepository.findByIdAndUserId(dressId, userId);
+
+    //     if (optionalDress.isPresent()) {
+    //         dressRepository.deleteById(dressId);
+    //         return true; // Dress successfully deleted
+    //     } else {
+    //         return false; // Dress with the specified ID not found or does not belong to the user
+    //     }
+    // }
+
+    
     public Dress addDress(DressDTO dressDTO){
 
          Dress.DressBuilder dress = Dress.builder();

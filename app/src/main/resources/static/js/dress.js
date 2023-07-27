@@ -1,5 +1,4 @@
-import { TOP_PATHS, SKIRT_PATHS } from './constants.js';
-
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, addToFavourites, Dress } from './constants.js';
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
 function displayLoadingScreen() {
@@ -12,47 +11,76 @@ function hideLoadingScreen() {
 
 displayLoadingScreen();
 
-const arrowTopLeft = document.getElementById("arrow-top-left");
-const arrowTopRight = document.getElementById("arrow-top-right");
-const arrowSkirtLeft = document.getElementById("arrow-skirt-left");
-const arrowSkirtRight = document.getElementById("arrow-skirt-right");
+let shoeCounter = 0;
+const dressShoe = document.getElementById("dress-shoe");
+const nextShoe = document.getElementById("shoe-button");
+nextShoe.addEventListener("click", () => {
+  shoeCounter++;
+  if (shoeCounter >= SHOE_PATHS.length) {
+    shoeCounter = 0;
+  }
+  dressShoe.src = SHOE_PATHS[shoeCounter];
+  clearFavouriteButtonText();
+});
 
-const dressTop = document.getElementById("dress-top");
-const dressSkirt = document.getElementById("dress-skirt");
+let veilCounter = 0;
+const dressVeil = document.getElementById("dress-veil");
+const nextVeil = document.getElementById("veil-button");
+nextVeil.addEventListener("click", () => {
+  veilCounter++;
+  if (veilCounter >= VEIL_PATHS.length) {
+    veilCounter = 0;
+  }
+  dressVeil.src = VEIL_PATHS[veilCounter];
+  clearFavouriteButtonText();
+});
+
+let sleeveCounter = 0;
+const dressSleeves = document.getElementById("dress-sleeve");
+const nextSleeves = document.getElementById("sleeves-button");
+nextSleeves.addEventListener("click", () => {
+  sleeveCounter++;
+  if (sleeveCounter >= SLEEVE_PATHS.length) {
+    sleeveCounter = 0;
+  }
+  dressSleeves.src = SLEEVE_PATHS[sleeveCounter];
+  clearFavouriteButtonText();
+});
 
 let topCounter = 0;
-let skirtCounter = 0;
-
-arrowTopLeft.addEventListener("click", () => {
+const dressTop = document.getElementById("dress-top");
+const nextTop = document.getElementById("top-button");
+nextTop.addEventListener("click", () => {
   topCounter++;
   if (topCounter >= TOP_PATHS.length) {
     topCounter = 0;
   }
   dressTop.src = TOP_PATHS[topCounter];
+  clearFavouriteButtonText();
 });
 
-arrowTopRight.addEventListener("click", () => {
-  topCounter--;
-  if (topCounter < 0) {
-    topCounter = TOP_PATHS.length - 1;
-  }
-  dressTop.src = TOP_PATHS[topCounter];
-});
-
-arrowSkirtLeft.addEventListener("click", () => {
+let skirtCounter = 0;
+const dressSkirt = document.getElementById("dress-skirt");
+const nextSkirt = document.getElementById("skirt-button");
+nextSkirt.addEventListener("click", () => {
   skirtCounter++;
   if (skirtCounter >= SKIRT_PATHS.length) {
     skirtCounter = 0;
   }
   dressSkirt.src = SKIRT_PATHS[skirtCounter];
+  clearFavouriteButtonText();
 });
 
-arrowSkirtRight.addEventListener("click", () => {
-  skirtCounter--;
-  if (skirtCounter < 0) {
-    skirtCounter = SKIRT_PATHS.length - 1;
+let trainCounter = 0;
+const dressTrain = document.getElementById("dress-train");
+const nextTrain = document.getElementById("train-button");
+nextTrain.addEventListener("click", () => {
+  trainCounter++;
+  if (trainCounter >= TRAIN_PATHS.length) {
+    trainCounter = 0;
   }
-  dressSkirt.src = SKIRT_PATHS[skirtCounter];
+  dressTrain.src = TRAIN_PATHS[trainCounter];
+  clearFavouriteButtonText();
 });
 
 function goToFavourites() {
@@ -70,24 +98,52 @@ function animateHeart() {
   }, 4000);
 }
 
-async function addToFavourites() {
-  const text = floatyHeart.innerText.trim();
+function clearFavouriteButtonText(){
+  floatyHeart.innerText = "♡";
+}
 
+function updateFavouritesButtonText(){
+  const text = floatyHeart.innerText.trim();
   if (text === "♡") {
     floatyHeart.innerText = "❤";
     favouriteButton.classList.remove("heart-button");
+    displayLoadingScreen();
+    createFavourites();
+    hideLoadingScreen();
   } else {
     favouriteButton.classList.add("heart-button");
     animateHeart();
     floatyHeart.innerText = "♡";
+    removeFromFavourites();
   }
+}
+
+async function createFavourites(){
+  const newFavourites = new Dress(
+    dressTrain.src,
+    dressVeil.src,
+    dressSleeves.src,
+    dressShoe.src,
+    dressSkirt.src,
+    dressTop.src,
+  )
+  const result = await addToFavourites(newFavourites);
+  if(result == 200){
+    console.log("SUCH GOOD ERROR HANDLING: ADD TO FAVOURITES WAS A SUCCESS :)");
+  }else{
+    console.log("SUCH GOOD ERROR HANDLING: ADD TO FAVOURITES FAILED :(");
+  }
+}
+
+async function removeFromFavourites() {
   // ----------------------------------------------------------------------------
-  /* ADD ADD-TO-FAVOURITES API CALL HERE */
+  /* ADD REMOVE-FROM-FAVOURITES API CALL HERE */
   // ----------------------------------------------------------------------------
 }
+
 const floatyHeart = document.getElementById('floaty-heart');
 const favouriteButton = document.getElementById("add-to-favourites");
-favouriteButton.addEventListener("click", addToFavourites);
+favouriteButton.addEventListener("click", updateFavouritesButtonText);
 
 async function logout() {
   displayLoadingScreen();
