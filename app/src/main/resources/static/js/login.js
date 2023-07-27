@@ -56,3 +56,6 @@ cognitoButton.addEventListener("click", () => {
   console.log("COGNITO BUTTON CLICKED");
   // add cognito link here
 });
+
+
+// th:href="@{/oauth2/authorization/cognito}">Log in with AWS

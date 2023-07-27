@@ -112,3 +112,11 @@ export async function addToFavourites(dress) {
   });
   return response.status;
 }
+
+export async function removeFromFavourites(dressID) {
+  const response = await fetch('/dress/${dressID}', {
+    method: 'DELETE'
+  });
+  console.log("RESPONSE:", response);
+  return response.status;
+}

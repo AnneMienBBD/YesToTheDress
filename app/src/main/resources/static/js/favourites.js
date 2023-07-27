@@ -1,4 +1,4 @@
-import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, Dress } from './constants.js';
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, Dress, removeFromFavourites } from './constants.js';
 
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
@@ -29,15 +29,6 @@ goToDressButton.addEventListener("click", () => {
   window.location.href = "/";
 });
 
-function removeFromFavourites(dressCounter) {
-  displayLoadingScreen();
-  // ----------------------------------------------------------------------------
-  /* ADD REMOVE FROM FAVOURITES API CALL HERE */
-  // ----------------------------------------------------------------------------
-
-  getFavourites();
-}
-
 function createDressImage(dress, dressCounter) {
   const dressImage = document.createElement("div");
   dressImage.classList.add("dress-image");
@@ -66,7 +57,9 @@ function createDressImage(dress, dressCounter) {
   removeButton.classList.add("remove-from-favourites-button");
 
   removeButton.addEventListener("click", () => {
+    displayLoadingScreen();
     removeFromFavourites(dressCounter);
+    hideLoadingScreen();
   });
 
   dressImage.appendChild(removeButton);
