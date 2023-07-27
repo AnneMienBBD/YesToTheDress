@@ -80,3 +80,35 @@ export const DRESS_ITEM = {
 };
 
 export const SILHOUETTE_PATH = "./images/silhouette.png";
+
+export class Dress { // train > veil > silhouette > sleeves > shoes > skirts > tops
+  constructor(trainPath, veilPath, sleevePath, shoePath, skirtPath, topPath) {
+    this.train = trainPath;
+    this.veil = veilPath;
+    this.silhouette = SILHOUETTE_PATH;
+    this.sleeve = sleevePath;
+    this.shoe = shoePath;
+    this.skirt = skirtPath;
+    this.top = topPath;
+  }
+} 
+
+export async function addToFavourites(dress) {
+  const dressIndices = {
+    topID: TOP_NAMES.indexOf(dress.top.split("/").pop().split(".")[0]) + 1,
+    skirtID: SKIRT_NAMES.indexOf(dress.skirt.split("/").pop().split(".")[0]) + 1,
+    trainID: TRAIN_NAMES.indexOf(dress.train.split("/").pop().split(".")[0]) + 1,
+    shoesID: SHOE_NAMES.indexOf(dress.shoe.split("/").pop().split(".")[0]) + 1,
+    sleeveID: SLEEVE_NAMES.indexOf(dress.sleeve.split("/").pop().split(".")[0]) + 1,
+    veilID: VEIL_NAMES.indexOf(dress.veil.split("/").pop().split(".")[0]) + 1
+  }
+
+  const response = await fetch('/dress', {
+    method: 'POST',
+    body: JSON.stringify(dressIndices),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+  return response.status;
+}

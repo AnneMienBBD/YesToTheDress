@@ -1,4 +1,4 @@
-import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS  } from './constants.js';
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, addToFavourites, Dress } from './constants.js';
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
 function displayLoadingScreen() {
@@ -107,7 +107,9 @@ function updateFavouritesButtonText(){
   if (text === "♡") {
     floatyHeart.innerText = "❤";
     favouriteButton.classList.remove("heart-button");
-    addToFavourites();
+    displayLoadingScreen();
+    createFavourites();
+    hideLoadingScreen();
   } else {
     favouriteButton.classList.add("heart-button");
     animateHeart();
@@ -116,10 +118,21 @@ function updateFavouritesButtonText(){
   }
 }
 
-async function addToFavourites() {
-  // ----------------------------------------------------------------------------
-  /* ADD ADD-TO-FAVOURITES API CALL HERE */
-  // ----------------------------------------------------------------------------
+async function createFavourites(){
+  const newFavourites = new Dress(
+    dressTrain.src,
+    dressVeil.src,
+    dressSleeves.src,
+    dressShoe.src,
+    dressSkirt.src,
+    dressTop.src,
+  )
+  const result = await addToFavourites(newFavourites);
+  if(result == 200){
+    console.log("SUCH GOOD ERROR HANDLING: ADD TO FAVOURITES WAS A SUCCESS :)");
+  }else{
+    console.log("SUCH GOOD ERROR HANDLING: ADD TO FAVOURITES FAILED :(");
+  }
 }
 
 async function removeFromFavourites() {

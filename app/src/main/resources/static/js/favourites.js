@@ -1,4 +1,4 @@
-import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, SILHOUETTE_PATH } from './constants.js';
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, Dress } from './constants.js';
 
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
@@ -34,10 +34,8 @@ function removeFromFavourites(dressCounter) {
   // ----------------------------------------------------------------------------
   /* ADD REMOVE FROM FAVOURITES API CALL HERE */
   // ----------------------------------------------------------------------------
-  // And then visually remove:
-  favouriteDresses.splice(dressCounter, 1);
-  numDresses--;
-  initializeCarousel();
+
+  getFavourites();
 }
 
 function createDressImage(dress, dressCounter) {
@@ -86,17 +84,7 @@ function initializeCarousel(favouriteDresses) {
   });
 }
 
-class Dress { // train > veil > silhouette > sleeves > shoes > skirts > tops
-  constructor(trainPath, veilPath, sleevePath, shoePath, skirtPath, topPath) {
-    this.train = trainPath;
-    this.veil = veilPath;
-    this.silhouette = SILHOUETTE_PATH;
-    this.sleeve = sleevePath;
-    this.shoe = shoePath;
-    this.skirt = skirtPath;
-    this.top = topPath;
-  }
-}
+
 
 let numDresses = 0;
 
@@ -139,8 +127,11 @@ async function getFavourites() {
       )
     );
   }
+  if(numDresses > 0){
+    initializeCarousel(favouriteDresses);
+  }else{
 
-  initializeCarousel(favouriteDresses);
+  }
   hideLoadingScreen();
 }
 
