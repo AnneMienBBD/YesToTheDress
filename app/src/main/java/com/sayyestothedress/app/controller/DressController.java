@@ -42,8 +42,9 @@ public class DressController {
     }
 
     @PostMapping("/dress")
-    public ResponseEntity<Dress> fetchDressById(@PathVariable int id, @Valid @RequestBody DressDTO dressDTO) {
-        Dress dress = dressService.addDress(dressDTO);
+    public ResponseEntity<Dress> addDressById(@Valid @RequestBody Dress dressReq) {
+        int userID = 2; //To cater for userid from auth later
+        Dress dress = dressService.addDress(dressReq, userID);
         if (dress != null) {
             return ResponseEntity.ok(dress);
         } else {

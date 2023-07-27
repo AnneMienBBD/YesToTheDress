@@ -48,38 +48,9 @@ public class DressService {
         return dressRepository.findByUserID(userID);
     }
 
-    public Dress addDress(DressDTO dressDTO){
-
-         Dress.DressBuilder dress = Dress.builder();
-
-         dress.userID(4);
-
-        if (dressDTO.getShoes() != null){
-           dress.shoesID(shoesRepository.findFirstByShoeName(dressDTO.getShoes()).getShoesID());
-        }
-
-        if (dressDTO.getSkirt() != null){
-            dress.skirtID(skirtsRepository.findFirstBySkirtName(dressDTO.getSkirt()).getSkirtID());
-        }
-
-        if (dressDTO.getSleeves() != null){
-           dress.sleeveID(sleevesRepository.findFirstBySleeveName(dressDTO.getSleeves()).getSleeveID());
-        }
-
-          if (dressDTO.getTop() != null){
-            dress.topID(topsRepository.findFirstByTopName(dressDTO.getTop()).getTopID());
-        }
-
-          if (dressDTO.getTrain() != null){
-            dress.trainID(trainRepository.findFirstByTrainName(dressDTO.getTrain()).getTrainID());
-        }
-        
-         if (dressDTO.getVeil() != null){
-          dress.veilID(veilsRepository.findFirstByVeilName(dressDTO.getVeil()).getVeilID());
-        }
-        
-        Dress saveDress = dress.build();
-        return dressRepository.save(saveDress);
+    public Dress addDress(Dress dressDTO, int id){
+        dressDTO.setUserID(id);
+        return dressRepository.save(dressDTO);
     }
     
 }
