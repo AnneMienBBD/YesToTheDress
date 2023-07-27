@@ -48,6 +48,11 @@ public class DressService {
         return dressRepository.findByUserID(userID);
     }
 
+    public Dress addDress(Dress dressDTO, int id){
+        dressDTO.setUserID(id);
+        return dressRepository.save(dressDTO);
+    }
+    
     public Dress addDress(DressDTO dressDTO){
 
          Dress.DressBuilder dress = Dress.builder();
