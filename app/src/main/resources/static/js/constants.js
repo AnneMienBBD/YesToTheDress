@@ -103,11 +103,13 @@ export async function addToFavourites(dress) {
     veilID: VEIL_NAMES.indexOf(dress.veil.split("/").pop().split(".")[0]) + 1
   }
 
+  const accessToken =  localStorage.getItem('jwt');
   const response = await fetch('/dress', {
     method: 'POST',
     body: JSON.stringify(dressIndices),
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + accessToken
     },
   });
   return response.status;

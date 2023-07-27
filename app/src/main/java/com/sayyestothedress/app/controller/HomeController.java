@@ -5,7 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-    @RequestMapping("/login")
+    // @RequestMapping("/login")
+    // public String viewLogin(){
+    //     return "login";
+    // }
+
+    @RequestMapping(value={"/login", "/", ""})
     public String viewLogin(){
         return "login";
     }

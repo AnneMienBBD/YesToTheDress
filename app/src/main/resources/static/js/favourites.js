@@ -97,7 +97,11 @@ let numDresses = 0;
 let favouriteDresses = [];
 async function getFavourites() {
   favouriteDresses = [];
-  const response = await fetch("/getFavourites");
+  const accessToken =  localStorage.getItem('jwt');
+  const response = await fetch("/getFavourites", {headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + accessToken,
+  },});
   const favouritesData = await response.json();
 
   numDresses = 0;
