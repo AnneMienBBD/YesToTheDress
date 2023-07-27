@@ -47,19 +47,8 @@ async function login(event) {
       const accessToken = session.getAccessToken().getJwtToken();
       const idToken = session.getIdToken().getJwtToken();
       const refreshToken = session.getRefreshToken().getToken();
-      localStorage.setItem('jwt',accessToken)
-      console.log('Authentication successful!', session);
-        // Use the access token to make authenticated API requests.
-        // For example, using Fetch API:
-        // const response = await fetch('/home', {
-        //     headers: {
-        //           Authorization: 'Bearer ' + accessToken
-        //       }
-        //   })
-        //   .then(response => response.json())
-        //   .then(data => console.log(data))
-        //   .catch(error => console.error(error));
-        // window.location.href = response.url;
+      localStorage.setItem('jwt',accessToken);
+        window.location.href = '/home';
       },
       onFailure: function (err) {
           console.error("Authentication failed:", err);
@@ -69,30 +58,6 @@ async function login(event) {
       }
   });
 
-  // ----------------------------------------------------------------------------
-  /* ADD LOGIN API CALL HERE
-  This is a node example:
-  const result = await fetch("/Login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  });
-  const response = await result.json();
-  if (response.error) {
-    errorText.innerText = response.error;
-    hideLoadingScreen();
-  } else {
-    sessionStorage.setItem("accessToken", response.token);
-    errorText.innerText = "Successful login";
-    window.location.href = "/Home";
-  }*/
-  // ----------------------------------------------------------------------------
 }
 
 loginForm.addEventListener("submit", login);
-
-// const cognitoButton = document.getElementById("cognito-button");
-// cognitoButton.addEventListener("click", () => {
-//   console.log("COGNITO BUTTON CLICKED");
-//   // add cognito link here
-// });
