@@ -64,36 +64,8 @@ main {
   pointer-events: none;
 }
 
-#floaty-heart {
-  margin: 0;
-  margin-block: 0;
-  margin-inline: 0;
-}
-#floaty-heart::before {
-  content: "❤";
-  position: absolute;
-  font-size: 2rem;
-  right: 40%;
-  opacity: 0.5;
-  pointer-events: none;
-}
-@keyframes flutterUp {
-  0% {
-    transform: translateY(0) rotate(0);
-  }
-  25% {
-    transform: translateY(-20px) rotate(-20deg);
-  }
-  50% {
-    transform: translateY(-40px) rotate(20deg);
-  }
-  75% {
-    transform: translateY(-20px) rotate(-20deg);
-  }
-  100% {
-    transform: translateY(-100vh) rotate(0);
-    opacity: 0;
-  }
+.noDisplay{
+  display: none;
 }
 
 @media (max-width: 620px){
