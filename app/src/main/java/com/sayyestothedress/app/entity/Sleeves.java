@@ -17,18 +17,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Dress {
+public class Sleeves {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private Integer dressID;
-    private Integer userID;
-    private Integer skirtID;
-    private Integer topID;
-    private Integer veilID;
-    private Integer shoesID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sleeveID;
-    private Integer trainID;
+    private String sleeveName;
+    private String colour;
+
     
 }

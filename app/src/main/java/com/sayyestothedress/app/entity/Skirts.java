@@ -1,5 +1,7 @@
 package com.sayyestothedress.app.entity;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,18 +19,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Dress {
+public class Skirts {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private Integer dressID;
-    private Integer userID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer skirtID;
-    private Integer topID;
-    private Integer veilID;
-    private Integer shoesID;
-    private Integer sleeveID;
-    private Integer trainID;
+    private String skirtName;
+    private String colour;
+
     
 }

@@ -1,35 +1,8 @@
 @import "main.css";
 
 main {
-  /* justify-content: flex-start; */
   justify-content: space-between;
   align-items: center;
-}
-
-#add-to-favourites {
-  width: 10rem;
-}
-
-#add-to-favourites,
-#logout-button,
-#go-to-favourites {
-  max-width: 10rem;
-}
-
-#logout-button,
-#go-to-favourites {
-  max-width: 10rem;
-  position: absolute;
-  right: 0;
-}
-
-#go-to-favourites {
-  font-size: medium;
-  bottom: 8vh;
-}
-
-#logout-button {
-  bottom: 0;
 }
 
 .dress-item {
@@ -37,31 +10,48 @@ main {
   width: 80vw;
   object-fit: contain;
   position: absolute;
-  top: 10vh;
+  top: 5vh;
   left: 10vw;
 }
 
-.arrow {
-  cursor: pointer;
-  max-height: 40vh;
-  width: 10vw;
-  object-fit: contain;
+.nav-buttons, 
+.next-button-list{
   position: absolute;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  margin: 0;
+  padding: 0;
+  top: 20vh;
 }
-.arrow.top {
-  top: 25vh;
+
+.next-button-list{
+  align-items: end;
+  right: 10vw;
 }
-.arrow.skirt {
-  top: 50vh;
+
+.nav-buttons{
+  align-items: start;
+  left: 10vw;
 }
-.arrow.left {
-  left: 25vw;
+
+
+.nav-buttons li,
+.next-button-list li{
+  height: 10vh;
 }
-.arrow.right {
-  left: 65vw;
+
+.next-button-list button,
+.nav-buttons button{
+  max-width: 20rem;
+  width: 30vw;
+  font-size: calc(18px + 0.8vw);
+  height: fit-content;
 }
-.arrow:hover {
-  filter: drop-shadow(0px 0px 8px var(--dark-secondary-color));
+
+#go-to-favourites::after{
+  content: "MY FAVOURITES";
 }
 
 .heart-button::before {
@@ -74,49 +64,16 @@ main {
   pointer-events: none;
 }
 
-#floaty-heart {
-  margin: 0;
-  margin-block: 0;
-  margin-inline: 0;
-}
-#floaty-heart::before {
-  content: "❤";
-  position: absolute;
-  font-size: 2rem;
-  right: 40%;
-  opacity: 0.5;
-  pointer-events: none;
-}
-@keyframes flutterUp {
-  0% {
-    transform: translateY(0) rotate(0);
+@media (max-width: 620px){
+  .next-button-list{
+    right: 2vw;
   }
-  25% {
-    transform: translateY(-20px) rotate(-20deg);
-  }
-  50% {
-    transform: translateY(-40px) rotate(20deg);
-  }
-  75% {
-    transform: translateY(-20px) rotate(-20deg);
-  }
-  100% {
-    transform: translateY(-100vh) rotate(0);
-    opacity: 0;
-  }
-}
-
-@media (max-width: 620px) {
-  #add-to-favourites,
-  #logout-button,
-  #go-to-favourites {
-    position: relative;
-    bottom: 0;
-    margin: 0.5rem;
+  
+  .nav-buttons{
+    left: 2vw;
   }
 
-  .dress-buttons {
-    display: flex;
-    flex-direction: column;
+  #go-to-favourites::after{
+    content: "MY FAVS";
   }
 }

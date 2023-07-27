@@ -28,10 +28,10 @@ export const SKIRT_PATHS = new Array(
 
 export const SLEEVE_PATH = "./images/sleeves/";
 export const SLEEVE_NAMES = new Array(
-  "full",
   "highNeck",
-  "offShoulder",
-  "none"
+  "long",
+  "none",
+  "offShoulder"
 );
 export const SLEEVE_PATHS = new Array(
   "./images/sleeves/" + SLEEVE_NAMES[0] + ".png",
@@ -42,42 +42,91 @@ export const SLEEVE_PATHS = new Array(
 
 export const TRAIN_PATH = "./images/trains/";
 export const TRAIN_NAMES = new Array(
-  "long",
-  "medium",
-  "short",
-  "none"
+  "none",
+  "train",
 );
 export const TRAIN_PATHS = new Array(
   "./images/trains/" + TRAIN_NAMES[0] + ".png",
-  "./images/trains/" + TRAIN_NAMES[1] + ".png",
-  "./images/trains/" + TRAIN_NAMES[2] + ".png",
-  "./images/trains/" + TRAIN_NAMES[3] + ".png"
+  "./images/trains/" + TRAIN_NAMES[1] + ".png"
 );
 
 export const SHOE_PATH = "./images/shoes/";
 export const SHOE_NAMES = new Array(
-  "boot",
-  "wedge",
-  "stiletto",
-  "strappy"
+  "black",
+  "white"
 );
 export const SHOE_PATHS = new Array(
   "./images/shoes/" + SHOE_NAMES[0] + ".png",
-  "./images/shoes/" + SHOE_NAMES[1] + ".png",
-  "./images/shoes/" + SHOE_NAMES[2] + ".png",
-  "./images/shoes/" + SHOE_NAMES[3] + ".png"
+  "./images/shoes/" + SHOE_NAMES[1] + ".png"
 );
 
-export const VEIL_PATH = "./images/shoes/";
+export const VEIL_PATH = "./images/veils/";
 export const VEIL_NAMES = new Array(
-  "long",
-  "medium",
-  "short",
-  "none"
+  "none",
+  "short"
 );
 export const VEIL_PATHS = new Array(
   "./images/veils/" + VEIL_NAMES[0] + ".png",
-  "./images/veils/" + VEIL_NAMES[1] + ".png",
-  "./images/veils/" + VEIL_NAMES[2] + ".png",
-  "./images/veils/" + VEIL_NAMES[3] + ".png"
+  "./images/veils/" + VEIL_NAMES[1] + ".png"
 );
+
+export const DRESS_ITEM = {
+  TOP: 'TOP',
+  SKIRT: 'SKIRT',
+  SLEEVES: 'SLEEVES',
+  TRAIN: 'TRAIN',
+  SHOES: 'SHOES',
+  VEIL: 'VEIL'
+};
+
+export const SILHOUETTE_PATH = "./images/silhouette.png";
+
+export class Dress { // train > veil > silhouette > sleeves > shoes > skirts > tops
+  constructor(trainPath, veilPath, sleevePath, shoePath, skirtPath, topPath) {
+    this.train = trainPath;
+    this.veil = veilPath;
+    this.silhouette = SILHOUETTE_PATH;
+    this.sleeve = sleevePath;
+    this.shoe = shoePath;
+    this.skirt = skirtPath;
+    this.top = topPath;
+  }
+} 
+
+export async function addToFavourites(dress) {
+  const dressIndices = {
+    topID: TOP_NAMES.indexOf(dress.top.split("/").pop().split(".")[0]) + 1,
+    skirtID: SKIRT_NAMES.indexOf(dress.skirt.split("/").pop().split(".")[0]) + 1,
+    trainID: TRAIN_NAMES.indexOf(dress.train.split("/").pop().split(".")[0]) + 1,
+    shoesID: SHOE_NAMES.indexOf(dress.shoe.split("/").pop().split(".")[0]) + 1,
+    sleeveID: SLEEVE_NAMES.indexOf(dress.sleeve.split("/").pop().split(".")[0]) + 1,
+    veilID: VEIL_NAMES.indexOf(dress.veil.split("/").pop().split(".")[0]) + 1
+  }
+
+  if(userPool.getCurrentUser()){
+    const accessToken =  localStorage.getItem('jwt');
+    const loggedInUser = userPool.getCurrentUser().username;
+    const response = await fetch(`/dress?user=${loggedInUser}`, {
+      method: 'POST',
+      body: JSON.stringify(dressIndices),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+      },
+    });
+    return response.status;
+  }
+  else{
+    return 401;
+  }
+}
+
+export async function logout() {
+  localStorage.removeItem('jwt');
+  const cognitoUser = userPool.getCurrentUser();
+
+  if (cognitoUser) {
+      cognitoUser.signOut();
+  }
+  window.location.href = "/login";
+}

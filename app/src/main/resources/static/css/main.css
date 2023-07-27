@@ -67,6 +67,14 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  color: var(--light-secondary-color);
+  margin: 0;
+  font-family: var(--accent-font);
+  font-size: calc(2vw + 2vh + 0.5rem);
+  text-align: left;
+}
+
 #loadingScreen {
   display: none;
   position: absolute;
@@ -148,4 +156,8 @@ button:before {
 button:hover:before {
   transform: scale(1);
   opacity: 1;
+}
+
+.noDisplay{
+  display: none;
 }

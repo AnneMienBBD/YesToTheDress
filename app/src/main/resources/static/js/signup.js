@@ -11,9 +11,11 @@ hideLoadingScreen();
 // END OF LOADING SCREEN -------------------------------------------
 
 const signupForm = document.getElementById("signupForm");
+const btn = document.getElementById("btn")
 const errorText = document.getElementById("errorText");
 const userName = document.getElementById("username");
 const userPassword = document.getElementById("password");
+const userEmail = document.getElementById("email");
 const loadingLabel = document.getElementById("loadingLabel");
 
 function hasSpecialChars(text) {
@@ -55,6 +57,7 @@ async function signup(event) {
 
   const username = userName.value;
   const password = userPassword.value;
+  const email = userEmail.value;
 
   if (!username || !password) {
     showErrorText("Please fill in both fields.");
@@ -91,32 +94,88 @@ async function signup(event) {
     return;
   }
 
-  // ----------------------------------------------------------------------------
-  /* ADD SIGNUP API CALL HERE
-  This is a node example:
-  const result = await fetch(
-    "/Signup",
-    {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({username, password})
-    }
-  );
-  const response = await result.json();
-  if(response.error){
-    showErrorText(response.error);
-    hideLoadingScreen();
-  }else{
-    loadingLabel.innerText = "Successful Signup - Please Login!"
-    setTimeout(() => {
-      loadingLabel.innerText = "";
-      hideLoadingScreen();
-      window.location.href = "/Login";
-    }, 3000);    
-  }*/
-  // ----------------------------------------------------------------------------
+  // TODO: email validation
 
-  window.location.href = "index.html";
+  try {
+
+    const attributeList = [];
+
+    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'email', Value: email }));
+    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'preferred_username', Value: username }));
+    userPool.signUp(username, password, attributeList, null, async function (err, result) {
+      if (err) {
+          showErrorText(err.message);
+          console.error('Error registering user:', err.message || JSON.stringify(err));
+          return;
+      }else{
+
+          const response = await fetch('/user', {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({username: username})
+          });
+          console.log("RESPONSE: ", response);
+          if (response.status === 201) {
+            document.getElementById('signup-container').style.display = 'none';
+            document.getElementById('verification-container').style.display = 'flex';
+          }
+          else {
+            showErrorText(
+              response.statusText
+            );
+          }          
+      }
+      });
+
+  } catch (err) {
+      showErrorText(err.message);
+      console.error('Sign up error', err);
+      alert('Sign up error: ' + err.message);
+  }
+  hideLoadingScreen();
+
 }
 
+async function verifyAccount(event) {
+  displayLoadingScreen();
+  event.preventDefault();
+  showErrorText("Verification error");
+  console.error('Verification error');
+
+  const username = document.getElementById('username').value;
+  const verificationCode = document.getElementById('verification-code').value;
+
+  const userData = {
+      Username: username,
+      Pool: userPool
+  };
+  try {
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
+        if (err) {
+            showErrorText(err.message);
+
+            console.error('Verification error', err);
+            alert('Verification error: ' + err.message);
+        } else {
+            console.log('Verification successful!', result);
+            alert('Verification successful! You can now sign in with your account.');
+
+            // Redirect to a login page or handle sign-in flow as needed
+            window.location.href = '/login';
+        }
+    });
+  } catch (err) {
+    showErrorText(err.message);
+    console.error('Verification error', err);
+    alert('Verification error: ' + err.message);
+}
+}
+
+
+
 signupForm.addEventListener("submit", signup);
+btn.addEventListener("click", verifyAccount);
