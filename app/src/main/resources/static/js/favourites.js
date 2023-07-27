@@ -61,21 +61,6 @@ function createDressImage(dress, dressCounter) {
       dressImage.appendChild(image);
     }
   }
-
-  const removeButton = document.createElement("button");
-  removeButton.style.position = "absolute";
-  removeButton.style.top = "30vh";
-  removeButton.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
-  removeButton.style.width = "fit-content";
-  removeButton.innerText = "Remove ❤";
-  removeButton.style.padding = "0 2% 0 2%";
-  removeButton.classList.add("remove-from-favourites-button");
-
-  removeButton.addEventListener("click", () => {
-    removeFromFavourites(dressCounter);
-  });
-
-  dressImage.appendChild(removeButton);
   return dressImage;
 }
 
@@ -90,7 +75,7 @@ function initializeCarousel(favouriteDresses) {
   });
 }
 
-
+const noDressesText = document.getElementById("no-dresses-heading");
 
 let numDresses = 0;
 
@@ -103,45 +88,50 @@ async function getFavourites() {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + accessToken,
   },});
-  const favouritesData = await response.json();
 
-  numDresses = 0;
-  for (const element of favouritesData) {
-
-    if(element.topID == null){
-      element.topID = 1;
+  if(response.status == 200){
+    const favouritesData = await response.json();
+    numDresses = 0;
+    for (const element of favouritesData) {
+  
+      if(element.topID == null){
+        element.topID = 1;
+      }
+      if(element.skirtID == null){
+        element.skirtID = 1;
+      }
+      if(element.sleeveID == null){
+        element.sleeveID = 1;
+      }
+      if(element.veilID == null){
+        element.veilID = 1;
+      }
+      if(element.trainID == null){
+        element.trainID = 1;
+      }
+      if(element.shoesID == null){
+        element.shoesID = 1;
+      }
+      numDresses++;
+      favouriteDresses.push(
+        new Dress(
+          TRAIN_PATHS[element.trainID-1],
+          VEIL_PATHS[element.veilID-1],
+          SLEEVE_PATHS[element.sleeveID-1],
+          SHOE_PATHS[element.shoesID-1],
+          SKIRT_PATHS[element.skirtID-1],
+          TOP_PATHS[element.topID-1],
+        )
+      );
     }
-    if(element.skirtID == null){
-      element.skirtID = 1;
+    if(numDresses > 0){
+      initializeCarousel(favouriteDresses);
+      noDressesText.classList.add("noDisplay");
+    }else{
+      noDressesText.classList.remove("noDisplay");
     }
-    if(element.sleeveID == null){
-      element.sleeveID = 1;
-    }
-    if(element.veilID == null){
-      element.veilID = 1;
-    }
-    if(element.trainID == null){
-      element.trainID = 1;
-    }
-    if(element.shoesID == null){
-      element.shoesID = 1;
-    }
-    numDresses++;
-    favouriteDresses.push(
-      new Dress(
-        TRAIN_PATHS[element.trainID-1],
-        VEIL_PATHS[element.veilID-1],
-        SLEEVE_PATHS[element.sleeveID-1],
-        SHOE_PATHS[element.shoesID-1],
-        SKIRT_PATHS[element.skirtID-1],
-        TOP_PATHS[element.topID-1],
-      )
-    );
-  }
-  if(numDresses > 0){
-    initializeCarousel(favouriteDresses);
   }else{
-
+    window.location.href = "/login";
   }
   hideLoadingScreen();
 }

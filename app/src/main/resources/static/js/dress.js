@@ -93,29 +93,21 @@ function goToFavourites() {
 const goToFavouritesButton = document.getElementById("go-to-favourites");
 goToFavouritesButton.addEventListener("click", goToFavourites);
 
-function animateHeart() {
-  floatyHeart.style.animation = 'flutterUp 4s forwards';
-  setTimeout(() => {
-    floatyHeart.style.animation = '';
-  }, 4000);
-}
-
 function clearFavouriteButtonText(){
-  floatyHeart.innerText = "♡";
+  favouriteButton.innerText = "ADD TO FAVOURITES";
+  favouriteButton.classList.remove("noDisplay");
 }
 
 function updateFavouritesButtonText(){
-  const text = floatyHeart.innerText.trim();
-  if (text === "♡") {
-    floatyHeart.innerText = "❤";
-    favouriteButton.classList.remove("heart-button");
+  const text = favouriteButton.innerText.trim();
+  if (text === "ADD TO FAVOURITES") {
+    favouriteButton.innerText = "ADDED";
     displayLoadingScreen();
     createFavourites();
     hideLoadingScreen();
   } else {
-    favouriteButton.classList.add("heart-button");
     animateHeart();
-    floatyHeart.innerText = "♡";
+    favouriteButton.innerText = "ADD TO FAVOURITES";
     removeFromFavourites();
   }
 }
@@ -131,9 +123,9 @@ async function createFavourites(){
   )
   const result = await addToFavourites(newFavourites);
   if(result == 200){
-    console.log("SUCH GOOD ERROR HANDLING: ADD TO FAVOURITES WAS A SUCCESS :)");
+    favouriteButton.classList.add("noDisplay");
   }else{
-    console.log("SUCH GOOD ERROR HANDLING: ADD TO FAVOURITES FAILED :(");
+    window.location.href = "/login";
   }
 }
 
@@ -143,7 +135,6 @@ async function removeFromFavourites() {
   // ----------------------------------------------------------------------------
 }
 
-const floatyHeart = document.getElementById('floaty-heart');
 const favouriteButton = document.getElementById("add-to-favourites");
 favouriteButton.addEventListener("click", updateFavouritesButtonText);
 
@@ -161,6 +152,11 @@ async function logout() {
 }
 
 const logoutButton = document.getElementById("logout-button");
+if(localStorage.getItem('jwt') == null){
+  logoutButton.innerText = "LOGIN";
+}else{
+  logoutButton.innerText = "LOGOUT";
+}
 logoutButton.addEventListener("click", logout);
 
 // trying to hide loading screen AFTER all images load - not really working though lmao
