@@ -19,5 +19,5 @@ public class FavouritesController {
     public String viewFavourites(){
         return "favourites";
     }
-  
+
 }
