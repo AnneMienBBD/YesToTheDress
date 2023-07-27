@@ -1,4 +1,4 @@
-import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, addToFavourites, Dress } from './constants.js';
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, addToFavourites, Dress, logout} from './constants.js';
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
 function displayLoadingScreen() {
@@ -136,18 +136,6 @@ async function removeFromFavourites() {
 const favouriteButton = document.getElementById("add-to-favourites");
 favouriteButton.addEventListener("click", updateFavouritesButtonText);
 
-async function logout() {
-  displayLoadingScreen();
-  // ----------------------------------------------------------------------------
-  /* ADD LOGOUT API CALL HERE */
-  // ----------------------------------------------------------------------------
-  const cognitoUser = userPool.getCurrentUser();
-
-  if (cognitoUser) {
-      cognitoUser.signOut();
-      window.location.href = "/login";
-  }
-}
 
 const logoutButton = document.getElementById("logout-button");
 if(localStorage.getItem('jwt') == null){
