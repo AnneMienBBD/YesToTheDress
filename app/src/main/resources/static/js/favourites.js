@@ -61,21 +61,6 @@ function createDressImage(dress, dressCounter) {
       dressImage.appendChild(image);
     }
   }
-
-  // const removeButton = document.createElement("button");
-  // removeButton.style.position = "absolute";
-  // removeButton.style.top = "30vh";
-  // removeButton.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
-  // removeButton.style.width = "fit-content";
-  // removeButton.innerText = "Remove ❤";
-  // removeButton.style.padding = "0 2% 0 2%";
-  // removeButton.classList.add("remove-from-favourites-button");
-
-  // removeButton.addEventListener("click", () => {
-  //   removeFromFavourites(dressCounter);
-  // });
-
-  // dressImage.appendChild(removeButton);
   return dressImage;
 }
 
@@ -90,7 +75,7 @@ function initializeCarousel(favouriteDresses) {
   });
 }
 
-
+const noDressesText = document.getElementById("no-dresses-heading");
 
 let numDresses = 0;
 
@@ -104,11 +89,7 @@ async function getFavourites() {
   },});
 
   if(response.status == 200){
-
-    console.log("RESPONSE: ", response);
     const favouritesData = await response.json();
-  
-    
     numDresses = 0;
     for (const element of favouritesData) {
   
@@ -144,8 +125,9 @@ async function getFavourites() {
     }
     if(numDresses > 0){
       initializeCarousel(favouriteDresses);
+      noDressesText.classList.add("noDisplay");
     }else{
-      // display - dresses
+      noDressesText.classList.remove("noDisplay");
     }
   }else{
     window.location.href = "/login";

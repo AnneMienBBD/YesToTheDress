@@ -64,10 +64,6 @@ main {
   pointer-events: none;
 }
 
-.noDisplay{
-  display: none;
-}
-
 @media (max-width: 620px){
   .next-button-list{
     right: 2vw;

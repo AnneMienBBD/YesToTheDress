@@ -157,3 +157,7 @@ button:hover:before {
   transform: scale(1);
   opacity: 1;
 }
+
+.noDisplay{
+  display: none;
+}
