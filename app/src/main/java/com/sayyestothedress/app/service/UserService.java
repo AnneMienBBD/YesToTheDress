@@ -1,6 +1,5 @@
 package com.sayyestothedress.app.service;
 
-
 import com.sayyestothedress.app.entity.User;
 import com.sayyestothedress.app.repository.UserRepository;
 
@@ -16,10 +15,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> fetchUser()
-    {
-        return userRepository.findAll();
+    // public List<User> fetchUser()
+    // {
+    //     return userRepository.findAll();
+    // }
+
+    public User addUser(String username) {
+        return userRepository.save(new User(username));
     }
+
 
     
     

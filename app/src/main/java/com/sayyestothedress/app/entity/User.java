@@ -1,5 +1,6 @@
 package com.sayyestothedress.app.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,10 +19,11 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 public class User {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Integer dressID;
+    
     private String username;
     
 }
