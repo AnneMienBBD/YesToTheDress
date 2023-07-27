@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.cors().and().csrf().disable()
         .authorizeHttpRequests(authorize -> authorize
-        .antMatchers("/login", "/signup", "/js/**", "/css/**", "/images/**", "/home", "/favourites", "/**")
+        .antMatchers("/login", "/signup", "/js/**", "/css/**", "/images/**", "/home", "/favourites", "/**", "/user/**")
         .permitAll()
         .anyRequest().authenticated())
         .oauth2ResourceServer().jwt();
