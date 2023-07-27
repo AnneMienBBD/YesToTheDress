@@ -94,7 +94,12 @@ async function logout() {
   // ----------------------------------------------------------------------------
   /* ADD LOGOUT API CALL HERE */
   // ----------------------------------------------------------------------------
-  window.location.href = "login.html";
+  const cognitoUser = userPool.getCurrentUser();
+
+  if (cognitoUser) {
+      cognitoUser.signOut();
+      window.location.href = "/login";
+  }
 }
 
 const logoutButton = document.getElementById("logout-button");
