@@ -35,8 +35,6 @@ nextVeil.addEventListener("click", () => {
   clearFavouriteButtonText();
 });
 
-console.log("USER ", userPool.getCurrentUser().username);
-
 let sleeveCounter = 0;
 const dressSleeves = document.getElementById("dress-sleeve");
 const nextSleeves = document.getElementById("sleeves-button");
