@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "Users", schema = "dbo")
 public class User {
@@ -15,10 +16,6 @@ public class User {
     private Integer userID;
 
     private String username;
-
-    public void getuserID(){
-
-    }
 
     public String getUsername() {
         return username;
