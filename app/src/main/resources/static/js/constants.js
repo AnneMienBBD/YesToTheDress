@@ -78,3 +78,5 @@ export const DRESS_ITEM = {
   SHOES: 'SHOES',
   VEIL: 'VEIL'
 };
+
+export const SILHOUETTE_PATH = "./images/silhouette.png";

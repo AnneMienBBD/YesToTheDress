@@ -1,4 +1,4 @@
-import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS  } from './constants.js';
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, SILHOUETTE_PATH } from './constants.js';
 
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
@@ -52,6 +52,8 @@ function createDressImage(dress, dressCounter) {
       image.style.top = "10vh";
       image.style.left = dressCounter * (90 / numDresses) + 5 + "vw";
       image.style.width = 90 / numDresses + "vw";
+      image.style.maxHeight = "80vh";
+      image.style.objectFit = "contain";
       dressImage.appendChild(image);
     }
   }
@@ -88,6 +90,7 @@ class Dress { // train > veil > silhouette > sleeves > shoes > skirts > tops
   constructor(trainPath, veilPath, sleevePath, shoePath, skirtPath, topPath) {
     this.train = trainPath;
     this.veil = veilPath;
+    this.silhouette = SILHOUETTE_PATH;
     this.sleeve = sleevePath;
     this.shoe = shoePath;
     this.skirt = skirtPath;
