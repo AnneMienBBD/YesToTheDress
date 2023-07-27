@@ -97,8 +97,9 @@ let numDresses = 0;
 let favouriteDresses = [];
 async function getFavourites() {
   favouriteDresses = [];
+  const loggedInUser = userPool.getCurrentUser().username;
   const accessToken =  localStorage.getItem('jwt');
-  const response = await fetch("/getFavourites", {headers: {
+  const response = await fetch(`/getFavourites?user=${loggedInUser}`, {headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + accessToken,
   },});

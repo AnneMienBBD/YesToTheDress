@@ -3,6 +3,8 @@ package com.sayyestothedress.app.controller;
 import com.sayyestothedress.app.entity.Dress;
 import com.sayyestothedress.app.model.DressDTO;
 import com.sayyestothedress.app.service.DressService;
+import com.sayyestothedress.app.service.UserService;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,12 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DressController {
 
     @Autowired private DressService dressService;
+    @Autowired private UserService userService;
 
     @GetMapping("/dress")
     public List<Dress> fetchDressList()
@@ -52,8 +56,9 @@ public class DressController {
     // }
 
     @PostMapping("/dress")
-    public ResponseEntity<Dress> addDressById(@Valid @RequestBody Dress dressReq) {
-        int userID = 2; //To cater for userid from auth later
+    public ResponseEntity<Dress> addDressById(@RequestParam String user, @Valid @RequestBody Dress dressReq) {
+        int userID = userService.findUserId(user);
+        //int userID = 2; //To cater for userid from auth later
         Dress dress = dressService.addDress(dressReq, userID);
         if (dress != null) {
             return ResponseEntity.ok(dress);
@@ -75,9 +80,8 @@ public class DressController {
 
 
     @GetMapping("/getFavourites")
-    public List<Dress> fetchDressesByUserID() {
-        int userID = 2; //To cater for userid from auth later
+    public List<Dress> fetchDressesByUserID(@RequestParam String user) {
+        int userID = userService.findUserId(user); //To cater for userid from auth later
         return dressService.fetchDressesByUserID(userID);
     }
-    
 }

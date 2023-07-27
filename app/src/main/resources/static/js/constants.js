@@ -104,7 +104,8 @@ export async function addToFavourites(dress) {
   }
 
   const accessToken =  localStorage.getItem('jwt');
-  const response = await fetch('/dress', {
+  const loggedInUser = userPool.getCurrentUser().username;
+  const response = await fetch(`/dress?user=${loggedInUser}`, {
     method: 'POST',
     body: JSON.stringify(dressIndices),
     headers: {
