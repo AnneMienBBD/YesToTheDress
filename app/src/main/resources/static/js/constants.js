@@ -103,15 +103,30 @@ export async function addToFavourites(dress) {
     veilID: VEIL_NAMES.indexOf(dress.veil.split("/").pop().split(".")[0]) + 1
   }
 
-  const accessToken =  localStorage.getItem('jwt');
-  const loggedInUser = userPool.getCurrentUser().username;
-  const response = await fetch(`/dress?user=${loggedInUser}`, {
-    method: 'POST',
-    body: JSON.stringify(dressIndices),
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + accessToken
-    },
-  });
-  return response.status;
+  if(userPool.getCurrentUser()){
+    const accessToken =  localStorage.getItem('jwt');
+    const loggedInUser = userPool.getCurrentUser().username;
+    const response = await fetch(`/dress?user=${loggedInUser}`, {
+      method: 'POST',
+      body: JSON.stringify(dressIndices),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+      },
+    });
+    return response.status;
+  }
+  else{
+    return 401;
+  }
+}
+
+export async function logout() {
+  localStorage.removeItem('jwt');
+  const cognitoUser = userPool.getCurrentUser();
+
+  if (cognitoUser) {
+      cognitoUser.signOut();
+  }
+  window.location.href = "/login";
 }

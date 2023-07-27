@@ -1,4 +1,4 @@
-import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, Dress } from './constants.js';
+import { TOP_PATHS, SKIRT_PATHS, SLEEVE_PATHS, TRAIN_PATHS, SHOE_PATHS, VEIL_PATHS, Dress, logout } from './constants.js';
 
 // LOADING SCREEN --------------------------------------------------
 const loadingSection = document.getElementById("loadingScreen");
@@ -11,20 +11,6 @@ function hideLoadingScreen() {
 // displayLoadingScreen();
 // END OF LOADING SCREEN -------------------------------------------
 
-// LOGOUT  ---------------------------------------------------------------------
-async function logout() {
-  displayLoadingScreen();
-  // ----------------------------------------------------------------------------
-  /* ADD LOGOUT API CALL HERE */
-  // ----------------------------------------------------------------------------
-  const cognitoUser = userPool.getCurrentUser();
-
-  if (cognitoUser) {
-      cognitoUser.signOut();
-      window.location.href = "/login";
-  }
-
-}
 const logoutButton = document.getElementById("logout-button");
 logoutButton.addEventListener("click", logout);
 
@@ -82,53 +68,58 @@ let numDresses = 0;
 let favouriteDresses = [];
 async function getFavourites() {
   favouriteDresses = [];
-  const loggedInUser = userPool.getCurrentUser().username;
-  const accessToken =  localStorage.getItem('jwt');
-  const response = await fetch(`/getFavourites?user=${loggedInUser}`, {headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + accessToken,
-  },});
+  if(userPool.getCurrentUser()){
+    const loggedInUser = userPool.getCurrentUser().username;
+    const accessToken =  localStorage.getItem('jwt');
 
-  if(response.status == 200){
-    const favouritesData = await response.json();
-    numDresses = 0;
-    for (const element of favouritesData) {
+    const response = await fetch(`/getFavourites?user=${loggedInUser}`, {headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + accessToken,
+    },});
   
-      if(element.topID == null){
-        element.topID = 1;
+    if(response.status == 200){
+      const favouritesData = await response.json();
+      numDresses = 0;
+      for (const element of favouritesData) {
+    
+        if(element.topID == null){
+          element.topID = 1;
+        }
+        if(element.skirtID == null){
+          element.skirtID = 1;
+        }
+        if(element.sleeveID == null){
+          element.sleeveID = 1;
+        }
+        if(element.veilID == null){
+          element.veilID = 1;
+        }
+        if(element.trainID == null){
+          element.trainID = 1;
+        }
+        if(element.shoesID == null){
+          element.shoesID = 1;
+        }
+        numDresses++;
+        favouriteDresses.push(
+          new Dress(
+            TRAIN_PATHS[element.trainID-1],
+            VEIL_PATHS[element.veilID-1],
+            SLEEVE_PATHS[element.sleeveID-1],
+            SHOE_PATHS[element.shoesID-1],
+            SKIRT_PATHS[element.skirtID-1],
+            TOP_PATHS[element.topID-1],
+          )
+        );
       }
-      if(element.skirtID == null){
-        element.skirtID = 1;
+      if(numDresses > 0){
+        initializeCarousel(favouriteDresses);
+        noDressesText.classList.add("noDisplay");
+      }else{
+        noDressesText.classList.remove("noDisplay");
       }
-      if(element.sleeveID == null){
-        element.sleeveID = 1;
-      }
-      if(element.veilID == null){
-        element.veilID = 1;
-      }
-      if(element.trainID == null){
-        element.trainID = 1;
-      }
-      if(element.shoesID == null){
-        element.shoesID = 1;
-      }
-      numDresses++;
-      favouriteDresses.push(
-        new Dress(
-          TRAIN_PATHS[element.trainID-1],
-          VEIL_PATHS[element.veilID-1],
-          SLEEVE_PATHS[element.sleeveID-1],
-          SHOE_PATHS[element.shoesID-1],
-          SKIRT_PATHS[element.skirtID-1],
-          TOP_PATHS[element.topID-1],
-        )
-      );
-    }
-    if(numDresses > 0){
-      initializeCarousel(favouriteDresses);
-      noDressesText.classList.add("noDisplay");
     }else{
-      noDressesText.classList.remove("noDisplay");
+      window.location.href = "/login";
     }
   }else{
     window.location.href = "/login";
