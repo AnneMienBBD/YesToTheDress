@@ -17,6 +17,10 @@ public class User {
 
     private String username;
 
+    public Integer getuserID(){
+        return userID;
+    }
+
     public String getUsername() {
         return username;
     }
