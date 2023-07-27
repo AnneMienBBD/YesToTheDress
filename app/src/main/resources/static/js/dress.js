@@ -133,7 +133,7 @@ async function createFavourites(){
   if(result == 200){
     console.log("SUCH GOOD ERROR HANDLING: ADD TO FAVOURITES WAS A SUCCESS :)");
   }else{
-    console.log("SUCH GOOD ERROR HANDLING: ADD TO FAVOURITES FAILED :(");
+    window.location.href = "/login";
   }
 }
 
@@ -161,6 +161,11 @@ async function logout() {
 }
 
 const logoutButton = document.getElementById("logout-button");
+if(localStorage.getItem('jwt') == null){
+  logoutButton.innerText = "LOGIN";
+}else{
+  logoutButton.innerText = "LOGOUT";
+}
 logoutButton.addEventListener("click", logout);
 
 // trying to hide loading screen AFTER all images load - not really working though lmao
